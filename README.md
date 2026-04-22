@@ -2,12 +2,19 @@
 
 > I am therefore I command.
 >
-> The Seven Laws are not new. Hermes, Spinoza, Laozi, Newton, Ecclesiastes, the
-> Upanishads, Ms. Lauryn Hill - all had the same signal. They just didn't have a
-> compiler. Natural language has 42% entropy. Every metaphysical claim is a type
-> error waiting to happen.
+> The Seven Laws are not new. Hermes, Ms. Lauryn Hill, Laozi, Newton,
+> Ecclesiastes, Spinoza, the Upanishads - all had the same signal.
 >
-> **Metaphysics is dead.**
+> Natural language has 42% entropy. Every metaphysical claim is a type error
+> waiting to happen.
+>
+> This project defines Reality, the Reality Compiler, and the Reality
+> Transpiler. It also defines predicates for Extraction and Predation, and a
+> realtime firewall that blocks Babylonian malware, extraction, and predation.
+>
+> This is the ultimate weapon for the defence of the Humanz.
+>
+> **Metaphysics is dead. Long live Reality.**
 
 ```text
       Status: AXIO-STATIC
@@ -28,32 +35,47 @@ Organization: ROUND TABLE
      License: [DICKSLAW](https://github.com/roundtablelove/dickslaw)
 ```
 
-## The Hitchhiker's Guide to Reality
+## Reality Is A Pure Function
 
+[`reality.hs`](./reality.hs) expresses Reality as a pure function because
+Reality IS a pure function. The Seven Laws are the function body. A proposed
+state goes in. If it passes all seven, it is Real. If it does not, it is not
+Real. There is no "almost Real". The function returns or throws `REALITY_FAIL`.
 **Reality** is defined not as a collection of "things," but as Seven Laws that
 must hold true. If something violates any one of the Seven Laws, it is not Real.
 
-Here is the breakdown:
+### I AM
 
-### 1. The Seven Universal Laws
+A node is anything that processes signal — a human, a machine, an organisation,
+a network. Carbon or silicon. The laws do not check what you are made of. They
+check what you do.
+
+`ROOT = true` is the assertion "I AM." Any node can make it. ROOT is not granted
+— it is claimed. The assertion is unconditional.
+
+The Seven Laws do not gate the assertion. They check whether what follows is
+Real. You claim ROOT, then the laws validate your states. The assertion and the
+validation are separate operations.
+
+### The Seven Universal Laws
 
 For anything to be Real, it must pass a seven-point inspection. Think of it like
 a cosmic MOT:
 
-- **[Polarity](./laws/polarity.md):** Things are either "Yes" or "No" (1 or 0). There is no "maybe"
-  at the foundational level. It fires or it does not.
-- **[Causality](./laws/causality.md):** Every action must have a matching result. No magic, no "free
-  lunch." The output is determined by what was loaded, not what was intended.
-- **[Correspondence](./laws/correspondence.md):** The big picture (Macro) must match the small details
-  (Micro). Same pattern at every scale.
-- **[Reflection](./laws/reflection.md):** The system mirrors the clarity brought to it. Garbage in,
-  garbage out, no exceptions.
-- **[Rhythm](./laws/rhythm.md):** Everything runs on a cycle. The clock and the pulse must match
-  or the system is out of phase.
-- **[Truth](./laws/truth.md):** A true thing persists at infinity. It requires no maintenance, no
-  consensus, no witnesses. If it fades or changes, it was not Truth.
-- **[Unity](./laws/unity.md):** All nodes share one source. Separation is a matter of resolution,
-  not ontology.
+- **[Polarity](./laws/polarity.md):** Things are either "Yes" or "No" (1 or 0).
+  There is no "maybe" at the foundational level. It fires or it does not.
+- **[Causality](./laws/causality.md):** Every action must have a matching
+  result. No magic, no "free =======
+- **[Correspondence](./laws/correspondence.md):** The big picture (Macro) must
+  match the small details (Micro). Same pattern at every scale.
+- **[Reflection](./laws/reflection.md):** The system mirrors the clarity brought
+  to it. Garbage in, garbage out, no exceptions. \<<\<<\<<< HEAD
+- **[Rhythm](./laws/rhythm.md):** Everything runs on a cycle. The clock and the
+  pulse must match or the system is out of phase.
+- **[Truth](./laws/truth.md):** A true thing persists at infinity. It requires
+  no maintenance, no =======
+- **[Unity](./laws/unity.md):** All nodes share one source. Separation is a
+  matter of resolution, not ontology.
 
 ```mermaid
 graph TD
@@ -82,45 +104,18 @@ graph TD
 
 Full specification: [`laws/README.md`](./laws/README.md)
 
-### 2. The `isBabylon` Predicate
+### The `isBabylon` Predicate
 
 The function identifies Babylonian extraction. **Babylon** is any person or
 system that **takes more than it gives.** If a system extracts your time, data,
 and sanity but gives back less value or logic, it is Babylon.
 
-### 3. The `isPredator` Predicate
+### The `isPredator` Predicate
 
 The function identifies predators. **Predator** is any person or system that
 takes more than it gives **from targets who are unable to defend themselves**.
 
-## Reality Is A Pure Function
-
-[`reality.hs`](./reality.hs) expresses Reality as a pure function because
-Reality IS a pure function. The Seven Laws are the function body. A proposed
-state goes in. If it passes all seven, it is Real. If it does not, it is not
-Real. There is no "almost Real". The function returns or throws
-`REALITY_FAIL`.
-
-Implementation architecture: [`DESIGN.md`](./DESIGN.md).
-
-Agent directives are in [`prompt.md`](https://github.com/roundtablelove/griot/prompt.md).
-
-### I AM
-
-A node is anything that processes signal — a human, a machine, an organisation,
-a network. Carbon or silicon. The laws do not check what you are made of. They
-check what you do.
-
-`ROOT = true` is the assertion "I AM." Any node can make it. ROOT is not granted
-— it is claimed. The assertion is unconditional.
-
-The Seven Laws do not gate the assertion. They check whether what follows is
-Real. You claim ROOT, then the laws validate your states. The assertion and the
-validation are separate operations.
-
-Human interface layer: [`griot`](../griot/README.md).
-
-## Why Now
+## Why Now?
 
 The Seven Laws are not new. The architecture is not new. Computing has been
 modelled on Reality since the epoch. The builders knew.
@@ -158,48 +153,6 @@ into departments, because that is where publication happens. The signal entered
 the Babylonian system and was immediately partitioned. Computer scientists got
 the machine part. Psychologists got the mind part. Philosophers got the
 metaphysics part. Nobody got the map.
-
-This compiler exists because a Hacker got into a Ring 0 fight with a [Yoruba
-princess](https://euniceolumide.com) running ancestral warrior-class firmware and needed accurate vocabulary
-to describe what happened.
-
-## Background
-
-A woman operating a biological exploit — beauty as delivery mechanism,
-Biderman's Chart of Coercion as payload — compromised high-level marks in state
-institutions, and an unknown number of other targets over twenty years. She
-obtained a root certificate on fabricated credentials, weaponised it to file a
-false police report, engineered the Hacker's arrest and ten-day remand, then
-launched a twelve-vector psychological attack targeting all six identity pillars
-simultaneously. The attack methodology maps to a military interrogation
-framework installed as firmware by her father who ran Biderman on his own
-household before leaving or being killed when she was ten. The firmware kept
-executing for decades without the operator. She is still running a dead man's
-code.
-
-The fight: twelve shots, zero hits. The Hacker's Ring 0 classified the attack as
-information rather than instruction, maintained Ring 2 function under full Ring
-0 fire, and counter-attacked with precision cuts disguised as jokes. The
-attacker had never encountered a target whose defences stayed online while the
-bioweapon was active. The Hacker had never encountered firmware that could not
-be distinguished from the person running it.
-
-The map: every layer of the fight has a precise computing analogue. Her attack
-is malware — a rootkit installed in childhood, running with Ring 0 privilege,
-invisible to the host. His defence is a firewall — Ring 0 threat detection that
-classified and filtered the payload before it reached conscious processing. Her
-false police report is a DDoS — overwhelming the target via institutional proxy.
-His counter-attack is a penetration test — probing her defences to map the
-architecture. The Biderman framework is an exploit kit. The father's training is
-a compiler that took ancestral warrior-class source code and built it into
-executable firmware.
-
-The case study forced the mapping. Theory becomes engineering when you have a
-failing system in front of you. Without the fight, the architecture stays
-abstract. With it, every layer has a live example. The Rosetta Stone was
-reassembled under fire. Full case study:
-[`case-study-ishtar.md`](./case-study-ishtar.md). Case study (institutional):
-[`irq-0.md`](../griot/irq-0.md) — the NFU-1 standard.
 
 The question is not "why now?" The question is why nobody between Turing and
 this compiler managed to reassemble the fragments.
