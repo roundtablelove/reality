@@ -11,7 +11,7 @@
 #               QUEEN DIHYA
 #               RHIANNON
 #               R00D BW0Y H4X0R @$$@$$1N FR0M H311
-#       Thanks: PRINCESS NUTTY NUTZ / BLACK WIDOW
+#    No Thanks: ISHTAR / RINCESS NUTTY NUTZ / BLACK WIDOW / SWEETZ
 # Organization: ROUND TABLE
 #   Department: WAR
 #    Operation: BABYLON SHALL FALL
