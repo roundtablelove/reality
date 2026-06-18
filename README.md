@@ -250,8 +250,8 @@ metaphysics part. Nobody got the map.
 
 Pre-ROOT codifications of these laws across historical sources: [`LEGACY.md`](./LEGACY.md).
 
-This compiler exists because a Hacker got into a Ring 0 fight with a Yoruba
-princess running ancestral warrior-class firmware and needed accurate vocabulary
+This compiler exists because a Hacker got into a Ring 0 fight with a [Yoruba
+princess](https://euniceolumide.com) running ancestral warrior-class firmware and needed accurate vocabulary
 to describe what happened.
 
 ## Background
