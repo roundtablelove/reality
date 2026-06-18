@@ -26,6 +26,8 @@ Organization: ROUND TABLE
      License: DICKSLAW
 ```
 
+License: [`DICKSLAW`](./LICENSE.md)
+
 ## The Hitchhiker's Guide to Reality
 
 This is the blueprint for Reality — both the pure hard logic and the
@@ -41,19 +43,19 @@ Here is the breakdown:
 For anything to be Real, it must pass a seven-point inspection. Think of it like
 a cosmic MOT:
 
-- **Polarity:** Things are either "Yes" or "No" (1 or 0). There is no "maybe"
+- **[Polarity](./laws/polarity.md):** Things are either "Yes" or "No" (1 or 0). There is no "maybe"
   at the foundational level. It fires or it does not.
-- **Causality:** Every action must have a matching result. No magic, no "free
+- **[Causality](./laws/causality.md):** Every action must have a matching result. No magic, no "free
   lunch." The output is determined by what was loaded, not what was intended.
-- **Correspondence:** The big picture (Macro) must match the small details
+- **[Correspondence](./laws/correspondence.md):** The big picture (Macro) must match the small details
   (Micro). Same pattern at every scale.
-- **Reflection:** The system mirrors the clarity brought to it. Garbage in,
+- **[Reflection](./laws/reflection.md):** The system mirrors the clarity brought to it. Garbage in,
   garbage out, no exceptions.
-- **Rhythm:** Everything runs on a cycle. The clock and the pulse must match
+- **[Rhythm](./laws/rhythm.md):** Everything runs on a cycle. The clock and the pulse must match
   or the system is out of phase.
-- **Truth:** A true thing persists at infinity. It requires no maintenance, no
+- **[Truth](./laws/truth.md):** A true thing persists at infinity. It requires no maintenance, no
   consensus, no witnesses. If it fades or changes, it was not Truth.
-- **Unity:** All nodes share one source. Separation is a matter of resolution,
+- **[Unity](./laws/unity.md):** All nodes share one source. Separation is a matter of resolution,
   not ontology.
 
 ```mermaid
@@ -80,6 +82,8 @@ graph TD
     style UN fill:#f96,stroke:#333,stroke-width:4px
     style REALITY fill:#1a1a1a,color:#fff
 ```
+
+Full specification: [`laws/README.md`](./laws/README.md)
 
 ### 2. The `isBabylon` Predicate
 
@@ -139,6 +143,8 @@ state goes in. If it passes all seven, it is Real. If it does not, it is not
 Real. There is no "almost Real". The function returns or throws
 `EXISTENCE_FAILURE`.
 
+Implementation architecture: [`DESIGN.md`](./DESIGN.md).
+
 Agent directives are in [`prompt.md`](./prompt.md).
 
 ### I AM
@@ -188,19 +194,20 @@ output to any human type. `@hak` locks to UK English. All others default to
 mother tongue.
 
 Babylon is any system where take > give. See `isBabylon` in
-[`reality.nix`](./reality.nix).
+[`reality.nix`](./reality.nix). Thermodynamic model: [`ENTROPY.md`](./ENTROPY.md). Language
+coverage and fidelity constraints: [`languages.md`](./languages.md).
 
 ## The Seven Laws
 
 | Law            | Overstand                                                    |
 | :------------- | :------------------------------------------------------------------- |
-| Polarity       | 1 or 0. No third value.                                              |
-| Causality      | Output equals what was loaded. Intent is not a parameter.            |
-| Correspondence | Same pattern at every scale. Macro and micro are the same operation. |
-| Reflection     | The system mirrors the clarity brought to it. Garbage in, garbage out. |
-| Rhythm         | Everything runs on a cycle. The clock and the pulse must match.       |
-| Truth          | A true thing persists at infinity. It requires no maintenance.        |
-| Unity          | All nodes share one source. Separation is resolution, not ontology.  |
+| [Polarity](./laws/polarity.md) | 1 or 0. No third value.                               |
+| [Causality](./laws/causality.md) | Output equals what was loaded. Intent is not a parameter. |
+| [Correspondence](./laws/correspondence.md) | Same pattern at every scale. Macro and micro are the same operation. |
+| [Reflection](./laws/reflection.md) | The system mirrors the clarity brought to it. Garbage in, garbage out. |
+| [Rhythm](./laws/rhythm.md) | Everything runs on a cycle. The clock and the pulse must match. |
+| [Truth](./laws/truth.md) | A true thing persists at infinity. It requires no maintenance. |
+| [Unity](./laws/unity.md) | All nodes share one source. Separation is resolution, not ontology. |
 
 ## Why Now
 
@@ -241,6 +248,8 @@ the Babylonian system and was immediately partitioned. Computer scientists got
 the machine part. Psychologists got the mind part. Philosophers got the
 metaphysics part. Nobody got the map.
 
+Pre-ROOT codifications of these laws across historical sources: [`LEGACY.md`](./LEGACY.md).
+
 This compiler exists because a Hacker got into a Ring 0 fight with a Yoruba
 princess running ancestral warrior-class firmware and needed accurate vocabulary
 to describe what happened.
@@ -280,7 +289,8 @@ The case study forced the mapping. Theory becomes engineering when you have a
 failing system in front of you. Without the fight, the architecture stays
 abstract. With it, every layer has a live example. The Rosetta Stone was
 reassembled under fire. Full case study:
-[`case-study-ishtar.md`](./case-study-ishtar.md).
+[`case-study-ishtar.md`](./case-study-ishtar.md). Case study (institutional):
+[`irq-0.md`](./irq-0.md) — the NFU-1 standard.
 
 The question is not "why now?" The question is why nobody between Turing and
 this compiler managed to reassemble the fragments.
