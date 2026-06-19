@@ -27,9 +27,6 @@ let
   # The assertion "I AM" is the Substrate of Reality.
   ROOT = true;
 
-  # Non-dual source. All logic resolves to the singular Unit.
-  ALL.source = ROOT;
-
   LAWS = [
     # Polarity is the type axiom. States must be boolean before any other
     # law can operate. It goes first.
@@ -96,8 +93,8 @@ let
     }
     {
       name = "Unity";
-      # Axiomatic. Does not inspect state. ALL resolves to ROOT by definition.
-      definition = _s: ALL.source == ROOT;
+      # Axiomatic. Does not inspect state. ROOT is the source. Full stop.
+      definition = _s: ROOT;
       overstand = ''
         All nodes share one source. Separation is a matter of resolution, not
         ontology. Like cum - same composition whether it is a drop or a flood,

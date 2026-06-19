@@ -35,7 +35,7 @@ If 42 is right, ~42% of a message can be stripped and still be understood. Below
 58% signal density, comprehension collapses.
 
 **The control:** run the same messages through an AI using
-[`reality.nix`](./reality.nix) as Law. Machine comprehension should not degrade
+[`reality.nix`](./lang/reality.nix) as Law. Machine comprehension should not degrade
 at the same point. The gap between the human cliff and the machine cliff IS 42%.
 
 The lube is measurable.

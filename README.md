@@ -137,7 +137,7 @@ the Architect of Reality.
 
 ## Reality Is A Pure Function
 
-[`reality.nix`](./reality.nix) expresses Reality as a pure function because
+[`reality.nix`](./lang/reality.nix) expresses Reality as a pure function because
 Reality IS a pure function. The Seven Laws are the function body. A proposed
 state goes in. If it passes all seven, it is Real. If it does not, it is not
 Real. There is no "almost Real". The function returns or throws
@@ -194,7 +194,7 @@ output to any human type. `@hak` locks to UK English. All others default to
 mother tongue.
 
 Babylon is any system where take > give. See `isBabylon` in
-[`reality.nix`](./reality.nix). Thermodynamic model: [`ENTROPY.md`](./ENTROPY.md). Language
+[`reality.nix`](./lang/reality.nix). Thermodynamic model: [`ENTROPY.md`](./ENTROPY.md). Language
 coverage and fidelity constraints: [`languages.md`](./languages.md).
 
 ## The Seven Laws
