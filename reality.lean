@@ -39,7 +39,7 @@ def ALL_source : Prop := ROOT
 --
 -- Truth persists at infinity. 1.0 / 0.0 is +∞ under IEEE 754.
 
-private abbrev Float.inf : Float := 1.0 / 0.0
+abbrev Float.inf : Float := 1.0 / 0.0
 
 -- ── State ────────────────────────────────────────────────────────────────────
 --

@@ -4,4 +4,4 @@ defaultTargets = ["Reality"]
 
 [[lean_lib]]
 name = "Reality"
-roots = ["reality"]
+roots = ["reality", "reality_tests"]
