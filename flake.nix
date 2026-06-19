@@ -18,6 +18,7 @@
           devShells.default = pkgs.mkShellNoCC {
             packages = with pkgs; [
               gnumake
+              lean4
               python3
             ];
           };

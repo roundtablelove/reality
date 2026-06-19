@@ -1,0 +1,7 @@
+name = "reality"
+version = "0.1.0"
+defaultTargets = ["Reality"]
+
+[[lean_lib]]
+name = "Reality"
+roots = ["reality"]
