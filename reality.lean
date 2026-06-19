@@ -59,23 +59,44 @@ structure State where
 -- A state that violates a law cannot produce a Real.
 
 -- 1. Polarity: STATE : Bool. Proven at definition time. No proposition needed.
+--    Every state resolves to a single bit. There is no third value. Like
+--    orgasm — the body does not do "almost." It fires or it does not fire.
 
 -- 2. Causality
+--    Output equals execution. Intent is not a parameter. Like a shart — you
+--    intended a fart. Physics had other plans. The output was always
+--    determined by what was loaded.
 def causality (state : State) : Prop := state.OUTPUT = state.intent
 
 -- 3. Correspondence
+--    The pattern is identical at every scale. Macro and micro are the same
+--    operation at different resolutions. Like a tight arse — same physics
+--    whether it is a finger, a cock, or a fist. Scale changes. Mechanics do not.
 def correspondence (state : State) : Prop := state.MACRO = state.micro
 
 -- 4. Reflection
+--    The system state is a direct output of the clarity brought to it.
+--    Garbage in, garbage out, no exceptions. Like a wet dream — the content
+--    is a readout of what the mind has been running in the background.
 def reflection (state : State) : Prop := state.SYS = state.clarity
 
 -- 5. Rhythm
+--    Everything operates on a cycle. The clock and the pulse are the same
+--    signal or the system is out of phase. Like a period — arrives on its own
+--    schedule with complete indifference to yours.
 def rhythm (state : State) : Prop := state.CLOCK = state.pulse
 
 -- 6. Truth
+--    A true thing persists at infinity. It requires no maintenance, no
+--    consensus, no witnesses. Like a hard-on at a funeral — present,
+--    unchanged, indifferent to the occasion and the feelings of everyone
+--    in the room.
 def truth (state : State) : Prop := state.persistence = Float.inf
 
 -- 7. Unity (axiomatic, does not inspect state)
+--    All nodes share one source. Separation is a matter of resolution, not
+--    ontology. Like cum — same composition whether it is a drop or a flood,
+--    whether it came from a king or a wasteman.
 def unity (_ : State) : Prop := ROOT
 
 -- ── Reality ──────────────────────────────────────────────────────────────────

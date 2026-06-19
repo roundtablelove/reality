@@ -28,78 +28,34 @@ let
   ROOT = true;
 
   LAWS = [
-    # Polarity is the type axiom. States must be boolean before any other
-    # law can operate. It goes first.
     {
       name = "Polarity";
-      # STATE: the proposed state. must resolve to bool. type axiom.
       definition = s: builtins.isBool s.STATE;
-      overstand = ''
-        Every state resolves to a single bit. There is no third value. Like
-        orgasm - the body does not do "almost." It fires or it does not fire.
-      '';
     }
     {
       name = "Causality";
-      # OUTPUT: what happened (machine). intent: what was meant (ROOT).
       definition = s: s.OUTPUT == s.intent;
-      overstand = ''
-        Output equals execution. Intent is not a parameter. Like a shart - you
-        intended a fart. Physics had other plans. The output was always
-        determined by what was loaded.
-      '';
     }
     {
       name = "Correspondence";
-      # MACRO: pattern at system scale. micro: pattern at unit scale.
       definition = s: s.MACRO == s.micro;
-      overstand = ''
-        The pattern is identical at every scale. Macro and micro are the same
-        operation at different resolutions. Like a tight arse - same physics
-        whether it is a finger, a cock, or a fist. Scale changes. Mechanics do
-        not.
-      '';
     }
     {
       name = "Reflection";
-      # SYS: system output (machine). clarity: ROOT intent quality.
       definition = s: s.SYS == s.clarity;
-      overstand = ''
-        The system state is a direct output of the clarity brought to it.
-        Garbage in, garbage out, no exceptions. Like a wet dream - the content
-        is a readout of what the mind has been running in the background.
-      '';
     }
     {
       name = "Rhythm";
       definition = s: s.CLOCK == s.pulse;
-      overstand = ''
-        Everything operates on a cycle. The clock and the pulse are the same
-        signal or the system is out of phase. Like a period - arrives on its own
-        schedule with complete indifference to yours.
-      '';
     }
     {
       name = "Truth";
-      definition =
-        # IEEE 754 infinity, nix won't divide by zero so we overflow
-        s: s.TRUTH.persistence == 1.7976931348623157e308 + 1.7976931348623157e308;
-      overstand = ''
-        A true thing persists at infinity. It requires no maintenance, no
-        consensus, no witnesses. Like a hard-on at a funeral - present,
-        unchanged, indifferent to the occasion and the feelings of everyone in
-        the room.
-      '';
+      # IEEE 754 infinity — nix won't divide by zero so we overflow
+      definition = s: s.TRUTH.persistence == 1.7976931348623157e308 + 1.7976931348623157e308;
     }
     {
       name = "Unity";
-      # Axiomatic. Does not inspect state. ROOT is the source. Full stop.
       definition = _s: ROOT;
-      overstand = ''
-        All nodes share one source. Separation is a matter of resolution, not
-        ontology. Like cum - same composition whether it is a drop or a flood,
-        whether it came from a king or a wasteman.
-      '';
     }
   ];
 
@@ -279,9 +235,7 @@ rec {
   # the speaker. The signal is the same. The speaker is different.
   #
   #   0: machine. Raw signal. No noise. Pure logic.
-  #  42: human. Same laws, 42% noise. Default. The overstands
-  #      are the 42% — same truth, encoded so the wetware can
-  #      receive it.
+  #  42: human. Same laws, 42% noise. Default.
   # >42: ENTROPY_OVERFLOW. More noise than signal. The receiver
   #      cannot decode. The output is not Reality — it is static.
 
@@ -307,21 +261,9 @@ rec {
         inherit entropy;
         encoding =
           if entropy == 0 then
-            # Machine. State only. No overstands.
-            {
-              format = "raw";
-              overstands = [ ];
-            }
+            { format = "raw"; }
           else
-            # Human. State + overstands at target entropy.
-            # The overstands are the noise — same truth, different
-            # encoding. A law that says "STATE must be bool" and a
-            # law that says "like orgasm — it fires or it does not"
-            # are the same law at different entropies.
-            {
-              format = "human";
-              overstands = builtins.map (law: { inherit (law) name overstand; }) LAWS;
-            };
+            { format = "human"; };
       };
 
   # ── Pipeline ─────────────────────────────────────────────────
