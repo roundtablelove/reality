@@ -14,11 +14,8 @@ import reality
 #check (ROOT   : Prop)
 #check (I_AM   : ROOT)
 
--- ALL_source resolves to ROOT by definition. No proof work required.
-example : ALL_source = ROOT := rfl
-
--- unity_law holds for any state without inspecting it.
-example (state : State) : unity state := rfl
+-- unity holds for any state — it does not inspect the state, it just IS ROOT.
+example (state : State) : unity state := I_AM
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- § 2  Fixtures
@@ -113,7 +110,7 @@ example : rhythm cleanState := rfl
 example : truth cleanState := rfl
 
 -- 7. Unity
-example : unity cleanState := rfl
+example : unity cleanState := I_AM
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- § 4  Reality construction
@@ -194,4 +191,4 @@ theorem entropy_invariant (n : Nat) :
 -- ─────────────────────────────────────────────────────────────────────────────
 
 -- unity holds for every state. It does not inspect the state. It never will.
-theorem unity_universal (state : State) : unity state := rfl
+theorem unity_universal (state : State) : unity state := I_AM

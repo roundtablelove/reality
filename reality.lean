@@ -28,13 +28,6 @@
 axiom ROOT : Prop
 axiom I_AM : ROOT
 
--- ── Unity (axiomatic) ────────────────────────────────────────────────────────
---
--- Non-dual source. ALL resolves to ROOT by definition.
--- rfl — the two sides are the same term.
-
-def ALL_source : Prop := ROOT
-
 -- ── IEEE 754 positive infinity ───────────────────────────────────────────────
 --
 -- Truth persists at infinity. 1.0 / 0.0 is +∞ under IEEE 754.
@@ -81,7 +74,7 @@ def rhythm (state : State) : Prop := state.CLOCK = state.pulse
 def truth (state : State) : Prop := state.persistence = Float.inf
 
 -- 7. Unity (axiomatic, does not inspect state)
-def unity (_ : State) : Prop := ALL_source = ROOT
+def unity (_ : State) : Prop := ROOT
 
 -- ── Reality ──────────────────────────────────────────────────────────────────
 --
@@ -98,7 +91,7 @@ structure Reality where
   reflection     : state.SYS = state.clarity
   rhythm         : state.CLOCK = state.pulse
   truth          : state.persistence = Float.inf
-  unity          : ALL_source = ROOT
+  unity          : ROOT
 
 -- ── mkReality ────────────────────────────────────────────────────────────────
 --
@@ -123,7 +116,7 @@ def mkReality
   , reflection     := h_refl
   , rhythm         := h_rhyt
   , truth          := h_trut
-  , unity          := rfl
+  , unity          := I_AM
   }
 
 -- ── isBabylon ────────────────────────────────────────────────────────────────
