@@ -23,7 +23,7 @@
                   name = "proof";
                   runtimeInputs = [ pkgs.lean4 ];
                   text = ''
-                    lake build
+                    lake build --verbose
                   '';
                 };
               in
