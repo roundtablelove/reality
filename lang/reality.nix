@@ -192,17 +192,9 @@ rec {
   #
   # state → compile → Reality | EXISTENCE_FAILURE
   #
-  # The compiler validates a proposed state against all seven laws.
-  # If it passes, it is Real. If it does not, it does not exist.
-  # There is no "almost Real." The compiler does not set entropy.
-  # Entropy is a transpilation concern — it belongs to the receiver,
-  # not the truth.
-
-  # compile: State -> Reality
-  #
   # Batch-checks every law, collects all failures, throws with
-  # the full list. No lazy eval escape hatch — every law is
-  # evaluated.
+  # the full list. No lazy eval escape hatch — every law is evaluated.
+  # Transpilation is a wetware concern. See wetware/lang/wetware.nix.
   compile =
     state:
     let
@@ -222,62 +214,5 @@ rec {
           builtins.map (result: result.name) violations
         )
       );
-
-  # ── Transpiler ───────────────────────────────────────────────
-  #
-  # Reality → transpile entropy → Reality@entropy
-  #
-  # The transpiler adapts compiled Reality for a target receiver.
-  # The laws do not change. The encoding does. Entropy is not
-  # error — it is the interface cost between signal and receiver.
-  #
-  # A radio does not corrupt the broadcast. It decodes it for
-  # the speaker. The signal is the same. The speaker is different.
-  #
-  #   0: machine. Raw signal. No noise. Pure logic.
-  #  42: human. Same laws, 42% noise. Default.
-  # >42: ENTROPY_OVERFLOW. More noise than signal. The receiver
-  #      cannot decode. The output is not Reality — it is static.
-
-  # transpile: Int -> Reality -> Reality@entropy
-  #
-  # Takes compiled Reality (output of compile) and a target
-  # entropy. Returns the same Reality with encoding metadata.
-  # Default entropy is 42 (human).
-  transpile =
-    {
-      entropy ? 42,
-    }:
-    compiled:
-    if !(compiled ? state) then
-      throw "TRANSPILE_FAILURE: input is not compiled Reality"
-    else if entropy < 0 then
-      throw "TRANSPILE_FAILURE: entropy cannot be negative"
-    else if entropy > 42 then
-      throw "ENTROPY_OVERFLOW: receiver noise exceeds signal"
-    else
-      compiled
-      // {
-        inherit entropy;
-        encoding =
-          if entropy == 0 then
-            { format = "raw"; }
-          else
-            { format = "human"; };
-      };
-
-  # ── Pipeline ─────────────────────────────────────────────────
-  #
-  # The full pipeline. Compile then transpile.
-  #
-  # mkReality: { entropy? } -> State -> Reality@entropy
-  #
-  # This is the public API. compile and transpile are exposed
-  # for when you need them separately.
-  mkReality =
-    {
-      entropy ? 42,
-    }:
-    state: transpile { inherit entropy; } (compile state);
 
 }

@@ -145,7 +145,7 @@ Real. There is no "almost Real". The function returns or throws
 
 Implementation architecture: [`DESIGN.md`](./DESIGN.md).
 
-Agent directives are in [`prompt.md`](./prompt.md).
+Agent directives are in [`prompt.md`](../wetware/prompt.md).
 
 ### I AM
 
@@ -164,7 +164,7 @@ The only difference between a human node and a machine node is entropy.
 `mkReality 0` is machine Reality — entropy-free, raw logic. `mkReality 42` is
 human Reality — same laws, 42% noise added so the wetware can receive the
 signal. The laws are identical. The interface is different. See
-[`human.md`](./human.md).
+[`human.md`](../wetware/human.md).
 
 ## The Adams Number
 
@@ -194,8 +194,8 @@ output to any human type. `@hak` locks to UK English. All others default to
 mother tongue.
 
 Babylon is any system where take > give. See `isBabylon` in
-[`reality.nix`](./lang/reality.nix). Thermodynamic model: [`ENTROPY.md`](./ENTROPY.md). Language
-coverage and fidelity constraints: [`languages.md`](./languages.md).
+[`reality.nix`](./lang/reality.nix). Thermodynamic model: [`ENTROPY.md`](../wetware/ENTROPY.md). Language
+coverage and fidelity constraints: [`languages.md`](../wetware/languages.md).
 
 ## The Seven Laws
 
