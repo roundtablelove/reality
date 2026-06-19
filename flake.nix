@@ -15,6 +15,21 @@
       perSystem =
         { pkgs, ... }:
         {
+          apps.proof = {
+            type = "app";
+            program =
+              let
+                script = pkgs.writeShellApplication {
+                  name = "proof";
+                  runtimeInputs = [ pkgs.lean4 ];
+                  text = ''
+                    lake build
+                  '';
+                };
+              in
+              "${script}/bin/proof";
+          };
+
           devShells.default = pkgs.mkShellNoCC {
             packages = with pkgs; [
               gnumake
