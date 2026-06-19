@@ -142,10 +142,10 @@ example : humanReality.state  = hackerReality.state  := rfl
 -- Proves that violated laws are ¬Real. A Reality cannot be constructed
 -- from these states — attempting to pass rfl for the violated law is a type error.
 
-example : ¬ causality      causalityViolation      := by decide
-example : ¬ correspondence correspondenceViolation  := by decide
-example : ¬ reflection     reflectionViolation      := by decide
-example : ¬ rhythm         rhythmViolation          := by decide
+example : ¬ causality      causalityViolation      := by show "said"   ≠ "meant";  decide
+example : ¬ correspondence correspondenceViolation  := by show "empire" ≠ "colony"; decide
+example : ¬ reflection     reflectionViolation      := by show "noise"  ≠ "clear";  decide
+example : ¬ rhythm         rhythmViolation          := by show "256Hz"  ≠ "60bpm";  decide
 
 -- Polarity has no negative proof — you cannot construct a State with STATE : ¬Bool.
 -- The type system makes the violation impossible to express. This is the law working.
