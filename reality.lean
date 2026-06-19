@@ -4,20 +4,22 @@
 --
 -- reality.lean: The Seven Laws as type-level propositions.
 -- A state that passes all seven IS Real. A state that fails
--- does not compile. EXISTENCE_FAILURE is a type error.
+-- does not compile. FAKE is a type error.
 --
 --        Status: AXIO-STATIC
 --          Type: NORMATIVE
 --           Uid: REALITY
---       Authors: KING ARTHUR II (THE ASSASSIN)
---                QUEEN DIHYA II
---                RHIANNON (GODDESS)
+--       Authors: KING ARTHUR II (babylon tag: Arthur Douglas Noel)
+--                QUEEN DIHYA II (babylon tag: Djina Jones)
 --                R00D BW0Y H4X0R FR0M H311
---  Organization: ROUND TABLE
+    Mad Gardener: Ishtar (goddess of Babyon) a.k.a. Princess Nutty Nutz / SweetE /
+                  Northern Exposure / NRX / LOTOS / Oracle / Black Widow (babylon 
+		              tag: Eunice Olumide MBE)
+--  Organization: ROUND TABLE LOVE
 --    Department: WAR
 --     Operation: BABYLON SHALL FALL
 --      Lexifier: UK English (3166-2:GB)
---       License: DICKSLAW
+--       License: [DICKSLAW](https://github.com/roundtablelove/dickslaw)
 
 -- ── ROOT ─────────────────────────────────────────────────────────────────────
 --
@@ -80,7 +82,7 @@ def unity (_ : State) : Prop := ROOT
 --
 -- To construct a Reality you must provide a State AND proofs that all seven
 -- laws hold. If one proof is missing the Reality cannot be constructed.
--- Not at runtime. At compile time. EXISTENCE_FAILURE is a type error.
+-- Not at runtime. At compile time. FAKE is a type error.
 
 structure Reality where
   entropy        : Nat
