@@ -35,8 +35,6 @@ axiom I_AM : ROOT
 
 def ALL_source : Prop := ROOT
 
-theorem unity : ALL_source = ROOT := rfl
-
 -- ── IEEE 754 positive infinity ───────────────────────────────────────────────
 --
 -- Truth persists at infinity. 1.0 / 0.0 is +∞ under IEEE 754.
@@ -83,7 +81,7 @@ def rhythm (s : State) : Prop := s.CLOCK = s.pulse
 def truth (s : State) : Prop := s.persistence = Float.inf
 
 -- 7. Unity (axiomatic, does not inspect state)
-def unity_law (_ : State) : Prop := ALL_source = ROOT
+def unity (_ : State) : Prop := ALL_source = ROOT
 
 -- ── Reality ──────────────────────────────────────────────────────────────────
 --
