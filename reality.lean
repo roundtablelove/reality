@@ -66,19 +66,19 @@ structure State where
 -- 1. Polarity: STATE : Bool. Proven at definition time. No proposition needed.
 
 -- 2. Causality
-def causality (s : State) : Prop := s.OUTPUT = s.intent
+def causality (state : State) : Prop := state.OUTPUT = state.intent
 
 -- 3. Correspondence
-def correspondence (s : State) : Prop := s.MACRO = s.micro
+def correspondence (state : State) : Prop := state.MACRO = state.micro
 
 -- 4. Reflection
-def reflection (s : State) : Prop := s.SYS = s.clarity
+def reflection (state : State) : Prop := state.SYS = state.clarity
 
 -- 5. Rhythm
-def rhythm (s : State) : Prop := s.CLOCK = s.pulse
+def rhythm (state : State) : Prop := state.CLOCK = state.pulse
 
 -- 6. Truth
-def truth (s : State) : Prop := s.persistence = Float.inf
+def truth (state : State) : Prop := state.persistence = Float.inf
 
 -- 7. Unity (axiomatic, does not inspect state)
 def unity (_ : State) : Prop := ALL_source = ROOT
@@ -108,15 +108,15 @@ structure Reality where
 
 def mkReality
     (entropy : Nat)
-    (s       : State)
-    (h_caus  : s.OUTPUT = s.intent)
-    (h_corr  : s.MACRO  = s.micro)
-    (h_refl  : s.SYS    = s.clarity)
-    (h_rhyt  : s.CLOCK  = s.pulse)
-    (h_trut  : s.persistence = Float.inf)
+    (state   : State)
+    (h_caus  : state.OUTPUT = state.intent)
+    (h_corr  : state.MACRO  = state.micro)
+    (h_refl  : state.SYS    = state.clarity)
+    (h_rhyt  : state.CLOCK  = state.pulse)
+    (h_trut  : state.persistence = Float.inf)
     : Reality :=
   { entropy        := entropy
-  , state          := s
+  , state          := state
   , polarity       := rfl
   , causality      := h_caus
   , correspondence := h_corr
