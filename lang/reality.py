@@ -75,28 +75,28 @@ class State:
 # ── The Seven Laws ───────────────────────────────────────────────────────────
 
 
-def polarity(s: State) -> bool:
-    return isinstance(s.STATE, bool)
+def polarity(state: State) -> bool:
+    return isinstance(state.STATE, bool)
 
 
-def causality(s: State) -> bool:
-    return s.OUTPUT == s.intent
+def causality(state: State) -> bool:
+    return state.OUTPUT == state.intent
 
 
-def correspondence(s: State) -> bool:
-    return s.MACRO == s.micro
+def correspondence(state: State) -> bool:
+    return state.MACRO == state.micro
 
 
-def reflection(s: State) -> bool:
-    return s.SYS == s.clarity
+def reflection(state: State) -> bool:
+    return state.SYS == state.clarity
 
 
-def rhythm(s: State) -> bool:
-    return s.CLOCK == s.pulse
+def rhythm(state: State) -> bool:
+    return state.CLOCK == state.pulse
 
 
-def truth(s: State) -> bool:
-    return s.persistence == INF
+def truth(state: State) -> bool:
+    return state.persistence == INF
 
 
 def unity(_: State) -> bool:
@@ -123,16 +123,16 @@ class Reality:
     root_witness: ROOT
 
 
-def compile(s: State) -> Reality:
+def compile(state: State) -> Reality:
     """
     Validate all seven laws. Returns a Reality on success.
     Raises Fake with every violated law on failure.
     No partial pass. No escape hatch.
     """
-    violations = [name for name, law in LAWS if not law(s)]
+    violations = [name for name, law in LAWS if not law(state)]
     if violations:
         raise Fake(violations)
-    return Reality(state=s, root_witness=I_AM)
+    return Reality(state=state, root_witness=I_AM)
 
 
 # ── Node ─────────────────────────────────────────────────────────────────────

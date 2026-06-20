@@ -59,23 +59,23 @@ record State : Set where
 
 -- 2. Causality
 Causality : State → Set
-Causality s = State.OUTPUT s ≡ State.intent s
+Causality state = State.OUTPUT state ≡ State.intent state
 
 -- 3. Correspondence
 Correspondence : State → Set
-Correspondence s = State.MACRO s ≡ State.micro s
+Correspondence state = State.MACRO state ≡ State.micro state
 
 -- 4. Reflection
 Reflection : State → Set
-Reflection s = State.SYS s ≡ State.clarity s
+Reflection state = State.SYS state ≡ State.clarity state
 
 -- 5. Rhythm
 Rhythm : State → Set
-Rhythm s = State.CLOCK s ≡ State.pulse s
+Rhythm state = State.CLOCK state ≡ State.pulse state
 
 -- 6. Truth
 Truth : State → Set
-Truth s = State.persistence s ≡ inf
+Truth state = State.persistence state ≡ inf
 
 -- 7. Unity
 Unity : State → Set
@@ -96,15 +96,15 @@ record Reality : Set where
 -- ── mkReality ────────────────────────────────────────────────────────────────
 
 mkReality
-  : (s : State)
-  → Causality s
-  → Correspondence s
-  → Reflection s
-  → Rhythm s
-  → Truth s
+  : (state : State)
+  → Causality state
+  → Correspondence state
+  → Reflection state
+  → Rhythm state
+  → Truth state
   → Reality
-mkReality s hc hco hre hrh htr = record
-  { state         = s
+mkReality state hc hco hre hrh htr = record
+  { state         = state
   ; causality-pf  = hc
   ; correspond-pf = hco
   ; reflection-pf = hre

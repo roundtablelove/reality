@@ -82,32 +82,32 @@ polarity _ =
 
 -- 2. Causality
 causality : State -> Bool
-causality s =
-    s.output == s.intent
+causality state =
+    state.output == state.intent
 
 
 -- 3. Correspondence
 correspondence : State -> Bool
-correspondence s =
-    s.macro == s.micro
+correspondence state =
+    state.macro == state.micro
 
 
 -- 4. Reflection
 reflection : State -> Bool
-reflection s =
-    s.sys == s.clarity
+reflection state =
+    state.sys == state.clarity
 
 
 -- 5. Rhythm
 rhythm : State -> Bool
-rhythm s =
-    s.clock == s.pulse
+rhythm state =
+    state.clock == state.pulse
 
 
 -- 6. Truth
 truth : State -> Bool
-truth s =
-    isInfinite s.persistence && s.persistence > 0
+truth state =
+    isInfinite state.persistence && state.persistence > 0
 
 
 -- 7. Unity
@@ -145,12 +145,12 @@ type CompileResult
 
 
 compile : State -> CompileResult
-compile s =
+compile state =
     let
         failures =
             List.filterMap
                 (\( name, check ) ->
-                    if check s then
+                    if check state then
                         Nothing
                     else
                         Just name
@@ -158,7 +158,7 @@ compile s =
                 laws
     in
     if List.isEmpty failures then
-        Real { state = s, rootWitness = I_AM }
+        Real { state = state, rootWitness = I_AM }
     else
         Fake failures
 

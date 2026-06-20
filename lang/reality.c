@@ -53,25 +53,25 @@ typedef struct {
 /* ── The Seven Laws ──────────────────────────────────────────────────────── */
 
 /* 1. Polarity — STATE is bool by construction. Always passes. */
-static bool polarity(const State *s) { (void)s; return true; }
+static bool polarity(const State *state) { (void)state; return true; }
 
 /* 2. Causality */
-static bool causality(const State *s) { return strcmp(s->OUTPUT, s->intent) == 0; }
+static bool causality(const State *state) { return strcmp(state->OUTPUT, state->intent) == 0; }
 
 /* 3. Correspondence */
-static bool correspondence(const State *s) { return strcmp(s->MACRO, s->micro) == 0; }
+static bool correspondence(const State *state) { return strcmp(state->MACRO, state->micro) == 0; }
 
 /* 4. Reflection */
-static bool reflection(const State *s) { return strcmp(s->SYS, s->clarity) == 0; }
+static bool reflection(const State *state) { return strcmp(state->SYS, state->clarity) == 0; }
 
 /* 5. Rhythm */
-static bool rhythm(const State *s) { return strcmp(s->CLOCK, s->pulse) == 0; }
+static bool rhythm(const State *state) { return strcmp(state->CLOCK, state->pulse) == 0; }
 
 /* 6. Truth */
-static bool truth(const State *s) { return isinf(s->persistence) && s->persistence > 0.0; }
+static bool truth(const State *state) { return isinf(state->persistence) && state->persistence > 0.0; }
 
 /* 7. Unity */
-static bool unity(const State *s) { (void)s; return root == I_AM; }
+static bool unity(const State *state) { (void)state; return root == I_AM; }
 
 typedef struct {
     const char *name;
@@ -108,10 +108,10 @@ typedef struct {
     char    violations[7][MAX_VIOLATION_NAME];
 } CompileResult;
 
-CompileResult compile(State s) {
+CompileResult compile(State state) {
     CompileResult r = { .ok = true, .violation_count = 0 };
     for (size_t i = 0; i < NUM_LAWS; i++) {
-        if (!LAWS[i].fn(&s)) {
+        if (!LAWS[i].fn(&state)) {
             r.ok = false;
             strncpy(r.violations[r.violation_count++],
                     LAWS[i].name,
@@ -119,7 +119,7 @@ CompileResult compile(State s) {
         }
     }
     if (r.ok)
-        r.reality = (Reality){ .state = s, .root_witness = I_AM };
+        r.reality = (Reality){ .state = state, .root_witness = I_AM };
     return r;
 }
 

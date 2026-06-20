@@ -30,45 +30,45 @@ let
   LAWS = [
     {
       name = "Polarity";
-      definition = s: builtins.isBool s.STATE;
+      definition = state: builtins.isBool state.STATE;
     }
     {
       name = "Causality";
-      definition = s: s.OUTPUT == s.intent;
+      definition = state: state.OUTPUT == state.intent;
     }
     {
       name = "Correspondence";
-      definition = s: s.MACRO == s.micro;
+      definition = state: state.MACRO == state.micro;
     }
     {
       name = "Reflection";
-      definition = s: s.SYS == s.clarity;
+      definition = state: state.SYS == state.clarity;
     }
     {
       name = "Rhythm";
-      definition = s: s.CLOCK == s.pulse;
+      definition = state: state.CLOCK == state.pulse;
     }
     {
       name = "Truth";
       # IEEE 754 infinity — nix won't divide by zero so we overflow
-      definition = s: s.TRUTH.persistence == 1.7976931348623157e308 + 1.7976931348623157e308;
+      definition = state: state.TRUTH.persistence == 1.7976931348623157e308 + 1.7976931348623157e308;
     }
     {
       name = "Unity";
-      definition = _s: ROOT;
+      definition = _: ROOT;
     }
   ];
 
 in
 rec {
 
-  # isExtractive: Node -> Bool
+  # isBabylon: Node -> Bool
   #
   # Returns true if Take > Give:
   #
   # - take: what the node extracts. Time, Attention, Data, Autonomy.
   # - give: what the node returns. Utility, Clarity, Visibility.
-  isExtractive =
+  isbabylon =
     node:
     let
       take = node.metrics.extractionLevel or 0.0;

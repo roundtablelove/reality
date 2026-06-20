@@ -51,23 +51,23 @@ record State where
 
 -- 2. Causality
 Causality : State -> Type
-Causality s = s.OUTPUT = s.intent
+Causality state = state.OUTPUT = state.intent
 
 -- 3. Correspondence
 Correspondence : State -> Type
-Correspondence s = s.MACRO = s.micro
+Correspondence state = state.MACRO = state.micro
 
 -- 4. Reflection
 Reflection : State -> Type
-Reflection s = s.SYS = s.clarity
+Reflection state = state.SYS = state.clarity
 
 -- 5. Rhythm
 Rhythm : State -> Type
-Rhythm s = s.CLOCK = s.pulse
+Rhythm state = state.CLOCK = state.pulse
 
 -- 6. Truth
 Truth : State -> Type
-Truth s = s.persistence = inf
+Truth state = state.persistence = inf
 
 -- 7. Unity
 Unity : State -> Type
@@ -88,15 +88,15 @@ record Reality where
 -- ── mkReality ────────────────────────────────────────────────────────────────
 
 mkReality
-  :  (s   : State)
-  -> (hc  : Causality s)
-  -> (hco : Correspondence s)
-  -> (hre : Reflection s)
-  -> (hrh : Rhythm s)
-  -> (htr : Truth s)
+  :  (state : State)
+  -> (hc    : Causality state)
+  -> (hco   : Correspondence state)
+  -> (hre   : Reflection state)
+  -> (hrh   : Rhythm state)
+  -> (htr   : Truth state)
   -> Reality
-mkReality s hc hco hre hrh htr =
-  MkReality s hc hco hre hrh htr I_AM
+mkReality state hc hco hre hrh htr =
+  MkReality state hc hco hre hrh htr I_AM
 
 -- ── Node ─────────────────────────────────────────────────────────────────────
 

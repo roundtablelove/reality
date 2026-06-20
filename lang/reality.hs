@@ -57,23 +57,23 @@ polarity _ = True
 
 -- 2. Causality
 causality :: State -> Bool
-causality s = oUTPUT s == intent s
+causality state = oUTPUT state == intent state
 
 -- 3. Correspondence
 correspondence :: State -> Bool
-correspondence s = mACRO s == micro s
+correspondence state = mACRO state == micro state
 
 -- 4. Reflection
 reflection :: State -> Bool
-reflection s = sYS s == clarity s
+reflection state = sYS state == clarity state
 
 -- 5. Rhythm
 rhythm :: State -> Bool
-rhythm s = cLOCK s == pulse s
+rhythm state = cLOCK state == pulse state
 
 -- 6. Truth
 truth :: State -> Bool
-truth s = persistence s == inf
+truth state = persistence state == inf
 
 -- 7. Unity
 unity :: State -> Bool
@@ -98,10 +98,10 @@ data Reality = Reality
   } deriving (Show)
 
 compile :: State -> Either [String] Reality
-compile s =
-  let failures = mapMaybe (\(n, f) -> if f s then Nothing else Just n) laws
+compile state =
+  let failures = mapMaybe (\(n, f) -> if f state then Nothing else Just n) laws
   in  if null failures
-        then Right (Reality s I_AM)
+        then Right (Reality state I_AM)
         else Left failures
 
 -- ── Node ─────────────────────────────────────────────────────────────────────

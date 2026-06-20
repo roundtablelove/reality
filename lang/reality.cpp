@@ -55,19 +55,19 @@ struct State {
 inline bool polarity(const State&) { return true; }
 
 // 2. Causality
-inline bool causality(const State& s) { return s.OUTPUT == s.intent; }
+inline bool causality(const State& state) { return state.OUTPUT == state.intent; }
 
 // 3. Correspondence
-inline bool correspondence(const State& s) { return s.MACRO == s.micro; }
+inline bool correspondence(const State& state) { return state.MACRO == state.micro; }
 
 // 4. Reflection
-inline bool reflection(const State& s) { return s.SYS == s.clarity; }
+inline bool reflection(const State& state) { return state.SYS == state.clarity; }
 
 // 5. Rhythm
-inline bool rhythm(const State& s) { return s.CLOCK == s.pulse; }
+inline bool rhythm(const State& state) { return state.CLOCK == state.pulse; }
 
 // 6. Truth
-inline bool truth(const State& s) { return s.persistence == INF; }
+inline bool truth(const State& state) { return state.persistence == INF; }
 
 // 7. Unity
 inline bool unity(const State&) { return true; }
@@ -112,13 +112,13 @@ private:
 
 // ── compile ───────────────────────────────────────────────────────────────────
 
-Reality compile(State s) {
+Reality compile(State state) {
     std::vector<std::string> violations;
     for (const auto& [name, fn] : LAWS)
-        if (!fn(s)) violations.push_back(name);
+        if (!fn(state)) violations.push_back(name);
     if (!violations.empty())
         throw Fake(std::move(violations));
-    return { std::move(s), I_AM };
+    return { std::move(state), I_AM };
 }
 
 // ── Node ──────────────────────────────────────────────────────────────────────

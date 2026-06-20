@@ -64,23 +64,23 @@ polarity _ = true
 
 -- 2. Causality
 causality :: State -> Boolean
-causality s = s.output == s.intent
+causality state = state.output == state.intent
 
 -- 3. Correspondence
 correspondence :: State -> Boolean
-correspondence s = s.macro == s.micro
+correspondence state = state.macro == state.micro
 
 -- 4. Reflection
 reflection :: State -> Boolean
-reflection s = s.sys == s.clarity
+reflection state = state.sys == state.clarity
 
 -- 5. Rhythm
 rhythm :: State -> Boolean
-rhythm s = s.clock == s.pulse
+rhythm state = state.clock == state.pulse
 
 -- 6. Truth
 truth :: State -> Boolean
-truth s = s.persistence == inf
+truth state = state.persistence == inf
 
 -- 7. Unity
 unity :: State -> Boolean
@@ -105,13 +105,13 @@ type Reality =
   }
 
 compile :: State -> Either (Array String) Reality
-compile s =
+compile state =
   let
     failures = mapMaybe check laws
-    check (Tuple name f) = if f s then Nothing else Just name
+    check (Tuple name f) = if f state then Nothing else Just name
   in
   if null failures
-    then Right { state: s, rootWitness: I_AM }
+    then Right { state: state, rootWitness: I_AM }
     else Left failures
 
 -- ── Node ─────────────────────────────────────────────────────────────────────
