@@ -1,3 +1,4 @@
 /.direnv
 /lake-manifest.json
 /.lake
+/result
