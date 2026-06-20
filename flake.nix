@@ -15,20 +15,17 @@
       perSystem =
         { pkgs, ... }:
         {
-          apps.proof = {
-            type = "app";
-            program =
-              let
-                script = pkgs.writeShellApplication {
-                  name = "proof";
-                  runtimeInputs = [ pkgs.lean4 ];
-                  text = ''
-                    lake build --verbose
-                  '';
-                };
-              in
-              "${script}/bin/proof";
-          };
+          packages.default = pkgs.runCommand "proof" {
+            src = ./.;
+            nativeBuildInputs = [ pkgs.lean4 ];
+          } ''
+            export HOME=$(mktemp -d)
+            cp -r "$src" ./work
+            chmod -R u+w ./work
+            cd ./work
+            set -o pipefail
+            lake build --verbose 2>&1 | tee "$out"
+          '';
 
           devShells.default = pkgs.mkShellNoCC {
             packages = with pkgs; [

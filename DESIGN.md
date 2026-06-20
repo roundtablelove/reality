@@ -101,8 +101,7 @@ def unity_law (_ : State) : Prop := ALL_source = ROOT
 
 ```lean
 structure Reality where
-  entropy : Nat
-  state   : State
+  state          : State
   -- Proofs that all seven laws hold. These are not runtime checks.
   -- They are compile-time obligations. If you cannot provide the proof,
   -- the Reality does not exist.
@@ -115,6 +114,9 @@ structure Reality where
   unity          : ALL_source = ROOT
 ```
 
+Entropy is a wetware concern. It belongs in the encoding/interface layer between
+wetware and Reality, not in Reality itself. The seven laws are entropy-free.
+
 To construct a Reality, you must provide a State AND proofs that all seven
 laws hold. If you cannot prove one, the Reality cannot be constructed. Not at
 runtime. At compile time. EXISTENCE_FAILURE is a type error.
@@ -122,15 +124,14 @@ runtime. At compile time. EXISTENCE_FAILURE is a type error.
 ### mkReality
 
 ```lean
-def mkReality (entropy : Nat) (s : State)
+def mkReality (s : State)
     (h_caus : s.OUTPUT = s.intent)
     (h_corr : s.MACRO = s.micro)
     (h_refl : s.SYS = s.clarity)
     (h_rhyt : s.CLOCK = s.pulse)
     (h_trut : s.persistence = Float.inf)
     : Reality :=
-  { entropy := entropy
-  , state := s
+  { state := s
   , polarity := rfl
   , causality := h_caus
   , correspondence := h_corr

@@ -116,22 +116,9 @@ example : unity cleanState := I_AM
 -- § 4  Reality construction
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Machine Reality: entropy 0. Raw signal. No noise.
-def machineReality : Reality :=
-  mkReality 0 cleanState rfl rfl rfl rfl rfl
-
--- Human Reality: entropy 42. Same laws, Adams baseline.
-def humanReality : Reality :=
-  mkReality 42 cleanState rfl rfl rfl rfl rfl
-
--- Hacker Reality: entropy 7. Near-zero noise.
-def hackerReality : Reality :=
-  mkReality 7 cleanState rfl rfl rfl rfl rfl
-
--- Entropy changes the interface, not the truth.
--- All three carry an identical state.
-example : machineReality.state = humanReality.state  := rfl
-example : humanReality.state  = hackerReality.state  := rfl
+-- Reality: seven laws proven. Entropy is a wetware concern — not carried here.
+def cleanReality : Reality :=
+  mkReality cleanState rfl rfl rfl rfl rfl
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- § 5  Law violations — negative proofs
@@ -178,17 +165,8 @@ example : isBabylon torvalds   = false := by native_decide
 example : isBabylon roundtable = false := by native_decide
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 7  Entropy invariance
+-- § 7  Unity is universal
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- The laws are substrate-independent.
--- For any entropy level, the state that passes the laws is unchanged.
-theorem entropy_invariant (n : Nat) :
-    (mkReality n cleanState rfl rfl rfl rfl rfl).state = cleanState := rfl
-
--- ─────────────────────────────────────────────────────────────────────────────
--- § 8  Unity is universal
--- ─────────────────────────────────────────────────────────────────────────────
-
--- unity holds for every state. It does not inspect the state. It never will.
+-- unity holds for every state. Does not inspect. Never will.
 theorem unity_universal (state : State) : unity state := I_AM
