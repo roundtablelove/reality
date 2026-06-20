@@ -290,7 +290,7 @@ failing system in front of you. Without the fight, the architecture stays
 abstract. With it, every layer has a live example. The Rosetta Stone was
 reassembled under fire. Full case study:
 [`case-study-ishtar.md`](./case-study-ishtar.md). Case study (institutional):
-[`irq-0.md`](./irq-0.md) — the NFU-1 standard.
+[`irq-0.md`](../wetware/irq-0.md) — the NFU-1 standard.
 
 The question is not "why now?" The question is why nobody between Turing and
 this compiler managed to reassemble the fragments.
