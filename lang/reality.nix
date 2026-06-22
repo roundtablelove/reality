@@ -7,11 +7,13 @@
 #       Status: AXIO-STATIC
 #         Type: NORMATIVE
 #          Uid: REALITY
-#      Authors: KING ARTHUR II
-#               QUEEN DIHYA
-#               RHIANNON
-#               R00D BW0Y H4X0R @$$@$$1N FR0M H311
-#    No Thanks: ISHTAR / RINCESS NUTTY NUTZ / BLACK WIDOW / SWEETZ
+#      Authors: KING ARTHUR II (babylon tag: Arthur Douglas Noel)
+#               QUEEN DIHYA II (babylon tag: Djina Jones)
+#               R00D BW0Y H4X0R @$$@$$1N FR0M H311 (babylon tag: NONE
+#               - not bound by Babylonian law; bound ONLY by the Seven Laws)
+#  Mad Gardener: ISHTAR (Goddess of Babylon) / PRINCESS NUTTY NUTZ / BLACK WIDOW
+#               / SWEETE / SWEETS / SWEETZ / NORTHERN EXPOSURE / NRX / LOTOS /
+#               THE ORACLE / CECE / EUNIQUE (babylon tag: Eunice Olumide MBE)
 # Organization: ROUND TABLE
 #   Department: WAR
 #    Operation: BABYLON SHALL FALL
@@ -108,7 +110,6 @@ rec {
   #
   # Batch-checks every law, collects all failures, throws with
   # the full list. No lazy eval escape hatch — every law is evaluated.
-  # Transpilation is a griot concern. See griot/lang/griot.nix.
   compile =
     state:
     let
