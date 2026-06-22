@@ -15,7 +15,12 @@
       perSystem =
         { pkgs, ... }:
         {
-          packages.default = pkgs.runCommand "proof" {
+          packages.default = pkgs.runCommand "reality-hs" { } ''
+            mkdir -p $out
+            cp ${./reality.hs} $out/reality.hs
+          '';
+
+          checks.proof = pkgs.runCommand "proof" {
             src = ./.;
             nativeBuildInputs = [ pkgs.lean4 ];
           } ''
