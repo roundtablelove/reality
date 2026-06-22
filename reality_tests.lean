@@ -160,9 +160,12 @@ def roundtable  : Node := { extractionLevel := 0.30, valueRatio := 0.90 }
 #eval isBabylon torvalds    -- false
 #eval isBabylon roundtable  -- false
 
--- Proofs for the clean nodes
-example : isBabylon torvalds   = false := by native_decide
-example : isBabylon roundtable = false := by native_decide
+-- Proofs — all six named nodes
+example : isBabylon nvidia      = true  := by native_decide
+example : isBabylon apple       = true  := by native_decide
+example : isBabylon ukGov       = true  := by native_decide
+example : isBabylon torvalds    = false := by native_decide
+example : isBabylon roundtable  = false := by native_decide
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- § 7  Unity is universal
@@ -170,3 +173,78 @@ example : isBabylon roundtable = false := by native_decide
 
 -- unity holds for every state. Does not inspect. Never will.
 theorem unity_universal (state : State) : unity state := I_AM
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 8  isPredator — exhaustive + named instances
+-- ─────────────────────────────────────────────────────────────────────────────
+
+-- Three canonical combos covering the full decision matrix:
+--   1. Babylon + defenceless target → predator
+#eval isPredator { extractionLevel := 0.9, valueRatio := 0.1, targetDefence := 0.0 }  -- true
+--   2. Babylon + full defence → Babylon but not predator (target can resist)
+#eval isPredator { extractionLevel := 0.9, valueRatio := 0.1, targetDefence := 1.0 }  -- false
+--   3. Not Babylon + defenceless target → not predator (can't predate without extracting)
+#eval isPredator { extractionLevel := 0.1, valueRatio := 0.9, targetDefence := 0.0 }  -- false
+
+-- Named predator instances (targetDefence < 1.0)
+def ishtar : Node := { extractionLevel := 0.95, valueRatio := 0.10, targetDefence := 0.05 }
+def payday : Node := { extractionLevel := 0.90, valueRatio := 0.30, targetDefence := 0.20 }
+
+-- Existing Babylon nodes (nvidia, apple, ukGov) default to targetDefence = 1.0.
+-- They are Babylon but not predators — their targets retain full capacity to defend.
+#eval isPredator nvidia   -- false  (Babylon, target at full defence)
+#eval isPredator ishtar   -- true   (Babylon + defenceless target)
+#eval isPredator payday   -- true   (Babylon + defenceless target)
+#eval isPredator torvalds -- false  (not Babylon → not predator regardless of defence)
+
+-- Proofs
+example : isPredator ishtar   = true  := by native_decide
+example : isPredator payday   = true  := by native_decide
+example : isPredator nvidia   = false := by native_decide
+example : isPredator torvalds = false := by native_decide
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 9  Multi-law violation
+-- ─────────────────────────────────────────────────────────────────────────────
+
+-- State violating causality AND rhythm simultaneously.
+-- Each law is independent — compound failure accumulates, no short-circuit.
+def dualViolation : State where
+  STATE       := true
+  OUTPUT      := "said"
+  intent      := "meant"
+  MACRO       := "pattern"
+  micro       := "pattern"
+  SYS         := "clear"
+  clarity     := "clear"
+  CLOCK       := "256Hz"
+  pulse       := "60bpm"
+  persistence := Float.inf
+
+-- Each violation holds independently
+example : ¬ causality dualViolation := by show "said"  ≠ "meant"; decide
+example : ¬ rhythm    dualViolation := by show "256Hz" ≠ "60bpm"; decide
+
+-- Both violations coexist — compound failure, not short-circuit
+example : ¬ causality dualViolation ∧ ¬ rhythm dualViolation :=
+  ⟨by show "said" ≠ "meant"; decide, by show "256Hz" ≠ "60bpm"; decide⟩
+
+-- Unity still holds for a violating state — axiomatic, never inspects state
+example : unity dualViolation := I_AM
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 10  Relational theorems
+-- ─────────────────────────────────────────────────────────────────────────────
+
+-- All predators are Babylon. Provable from definitions alone — no axioms needed.
+theorem predator_implies_babylon (n : Node) :
+    isPredator n = true → isBabylon n = true := by
+  intro h
+  simp only [isPredator, Bool.and_eq_true] at h
+  exact h.1
+
+-- Contrapositive: a node that gives more than it takes cannot be a predator.
+theorem notBabylon_notPredator (n : Node) :
+    isBabylon n = false → isPredator n = false := by
+  intro h
+  simp [isPredator, h]
