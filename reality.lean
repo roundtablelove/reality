@@ -85,7 +85,6 @@ def unity (_ : State) : Prop := ROOT
 -- Not at runtime. At compile time. FAKE is a type error.
 
 structure Reality where
-  entropy        : Nat
   state          : State
   polarity       : state.STATE = state.STATE    -- trivial; enforced by type
   causality      : state.OUTPUT = state.intent
@@ -102,16 +101,14 @@ structure Reality where
 -- No throw. No runtime. No escape hatch.
 
 def mkReality
-    (entropy : Nat)
-    (state   : State)
-    (h_caus  : state.OUTPUT = state.intent)
-    (h_corr  : state.MACRO  = state.micro)
-    (h_refl  : state.SYS    = state.clarity)
-    (h_rhyt  : state.CLOCK  = state.pulse)
-    (h_trut  : state.persistence = Float.inf)
+    (state  : State)
+    (h_caus : state.OUTPUT = state.intent)
+    (h_corr : state.MACRO  = state.micro)
+    (h_refl : state.SYS    = state.clarity)
+    (h_rhyt : state.CLOCK  = state.pulse)
+    (h_trut : state.persistence = Float.inf)
     : Reality :=
-  { entropy        := entropy
-  , state          := state
+  { state          := state
   , polarity       := rfl
   , causality      := h_caus
   , correspondence := h_corr
