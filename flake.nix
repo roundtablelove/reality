@@ -29,7 +29,7 @@
             chmod -R u+w ./work
             cd ./work
             set -o pipefail
-            lake build --verbose 2>&1 | tee "$out"
+            lake build --verbose
           '';
 
           devShells.default = pkgs.mkShellNoCC {
