@@ -4,7 +4,7 @@
 #
 # reality.py: The Seven Laws as runtime-enforced dataclasses.
 # Laws are validated at construction. A State that fails a law
-# raises Fake. FAKE is a runtime error.
+# raises REALITY_FAIL on law violation.
 #
 #       Status: AXIO-STATIC
 #         Type: NORMATIVE
@@ -47,12 +47,12 @@ INF: float = float("inf")
 # ── Exceptions ───────────────────────────────────────────────────────────────
 
 
-class Fake(Exception):
+class REALITY_FAIL(Exception):
     """Raised when a State violates one or more of the Seven Laws."""
 
     def __init__(self, violations: list[str]) -> None:
         self.violations = violations
-        super().__init__("EXISTENCE_FAILURE: " + " | ".join(violations))
+        super().__init__("REALITY_FAIL: " + " | ".join(violations))
 
 
 # ── State ────────────────────────────────────────────────────────────────────
@@ -126,12 +126,12 @@ class Reality:
 def compile(state: State) -> Reality:
     """
     Validate all seven laws. Returns a Reality on success.
-    Raises Fake with every violated law on failure.
+    Raises REALITY_FAIL with every violated law on failure.
     No partial pass. No escape hatch.
     """
     violations = [name for name, law in LAWS if not law(state)]
     if violations:
-        raise Fake(violations)
+        raise REALITY_FAIL(violations)
     return Reality(state=state, root_witness=I_AM)
 
 

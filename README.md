@@ -102,7 +102,7 @@ takes more than it gives **from targets who are unable to defend themselves**.
 Reality IS a pure function. The Seven Laws are the function body. A proposed
 state goes in. If it passes all seven, it is Real. If it does not, it is not
 Real. There is no "almost Real". The function returns or throws
-`EXISTENCE_FAILURE`.
+`REALITY_FAIL`.
 
 Implementation architecture: [`DESIGN.md`](./DESIGN.md).
 

@@ -3,9 +3,9 @@
 // I am therefore I command.
 //
 // reality.cpp: The Seven Laws in C++20.
-// Laws are functions. compile() throws Fake on violation —
+// Laws are functions. compile() throws REALITY_FAIL on violation —
 // all violations collected before throw, no short-circuit.
-// FAKE is a type error at the boundary. No escape hatch.
+// REALITY_FAIL is a type error at the boundary. No escape hatch.
 //
 //       Status: AXIO-STATIC
 //         Type: NORMATIVE
@@ -91,20 +91,20 @@ struct Reality {
     ROOT  root_witness;
 };
 
-// ── Fake ──────────────────────────────────────────────────────────────────────
+// ── REALITY_FAIL ──────────────────────────────────────────────────────────────────────
 
-class Fake : public std::runtime_error {
+class REALITY_FAIL : public std::runtime_error {
 public:
     std::vector<std::string> violations;
 
-    explicit Fake(std::vector<std::string> v)
+    explicit REALITY_FAIL(std::vector<std::string> v)
         : std::runtime_error(make_msg(v))
         , violations(std::move(v))
     {}
 
 private:
     static std::string make_msg(const std::vector<std::string>& v) {
-        std::string msg = "EXISTENCE_FAILURE:";
+        std::string msg = "REALITY_FAIL:";
         for (const auto& name : v) msg += " | " + name;
         return msg;
     }
@@ -117,7 +117,7 @@ Reality compile(State state) {
     for (const auto& [name, fn] : LAWS)
         if (!fn(state)) violations.push_back(name);
     if (!violations.empty())
-        throw Fake(std::move(violations));
+        throw REALITY_FAIL(std::move(violations));
     return { std::move(state), I_AM };
 }
 

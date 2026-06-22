@@ -29,7 +29,7 @@ Status: DESIGN
 
 The Seven Laws move from Nix runtime checks to Lean type-level propositions.
 A state that passes all seven IS Real. A state that fails does not compile.
-EXISTENCE_FAILURE moves from `throw` to type error.
+REALITY_FAIL moves from `throw` to type error.
 
 ### ROOT
 
@@ -119,7 +119,7 @@ griot and Reality, not in Reality itself. The seven laws are entropy-free.
 
 To construct a Reality, you must provide a State AND proofs that all seven
 laws hold. If you cannot prove one, the Reality cannot be constructed. Not at
-runtime. At compile time. EXISTENCE_FAILURE is a type error.
+runtime. At compile time. REALITY_FAIL is a type error.
 
 ### mkReality
 
@@ -195,7 +195,7 @@ mkReality validates
  pass      fail
    │         │
    ▼         ▼
- emit    EXISTENCE_FAILURE
+ emit    REALITY_FAIL
          (output never existed)
 ```
 

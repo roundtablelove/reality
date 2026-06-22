@@ -141,7 +141,7 @@ type alias Reality =
 
 type CompileResult
     = Real Reality
-    | Fake (List String)
+    | REALITY_FAIL (List String)
 
 
 compile : State -> CompileResult
@@ -160,7 +160,7 @@ compile state =
     if List.isEmpty failures then
         Real { state = state, rootWitness = I_AM }
     else
-        Fake failures
+        REALITY_FAIL failures
 
 
 -- ── Node ─────────────────────────────────────────────────────────────────────

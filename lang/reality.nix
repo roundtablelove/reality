@@ -104,7 +104,7 @@ rec {
 
   # ── Compiler ───────────────────────────────────────────────────
   #
-  # state → compile → Reality | EXISTENCE_FAILURE
+  # state → compile → Reality | REALITY_FAIL
   #
   # Batch-checks every law, collects all failures, throws with
   # the full list. No lazy eval escape hatch — every law is evaluated.
@@ -123,7 +123,7 @@ rec {
       state
     else
       throw (
-        "EXISTENCE_FAILURE: "
+        "REALITY_FAIL: "
         + builtins.concatStringsSep " | " (
           builtins.map (result: result.name) violations
         )
