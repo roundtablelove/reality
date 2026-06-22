@@ -116,7 +116,7 @@ example : unity cleanState := I_AM
 -- § 4  Reality construction
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Reality: seven laws proven. Entropy is a wetware concern — not carried here.
+-- Reality: seven laws proven. Entropy is a griot concern — not carried here.
 def cleanReality : Reality :=
   mkReality cleanState rfl rfl rfl rfl rfl
 

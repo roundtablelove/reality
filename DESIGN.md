@@ -114,8 +114,8 @@ structure Reality where
   unity          : ALL_source = ROOT
 ```
 
-Entropy is a wetware concern. It belongs in the encoding/interface layer between
-wetware and Reality, not in Reality itself. The seven laws are entropy-free.
+Entropy is a [griot](https://github.com/roundtablelove/griot) concern. It belongs in the encoding/interface layer between
+griot and Reality, not in Reality itself. The seven laws are entropy-free.
 
 To construct a Reality, you must provide a State AND proofs that all seven
 laws hold. If you cannot prove one, the Reality cannot be constructed. Not at

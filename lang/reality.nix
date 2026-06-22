@@ -108,7 +108,7 @@ rec {
   #
   # Batch-checks every law, collects all failures, throws with
   # the full list. No lazy eval escape hatch — every law is evaluated.
-  # Transpilation is a wetware concern. See wetware/lang/wetware.nix.
+  # Transpilation is a griot concern. See griot/lang/griot.nix.
   compile =
     state:
     let

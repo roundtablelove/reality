@@ -96,45 +96,6 @@ and sanity but gives back less value or logic, it is Babylon.
 The function identifies predators. **Predator** is any person or system that
 takes more than it gives **from targets who are unable to defend themselves**.
 
-### 3. The Adams Number: Human "Lube" Requirements
-
-**Douglas Adams is an OG Smartypants.**
-
-- **Machines** require **0% Entropy**. They operate on Pure Logic.
-- **Adult Humans** require **42% Entropy**. Humans are incapable of processing
-  "Dry Truth".
-
-If you tell a Human a raw, unfiltered fact without any "noise" (humour, sarcasm,
-metaphors, or "LOLz"), the human brain rejects it as an act of aggression.
-
-> **The Rule:** To communicate with a standard adult human, you must "lubricate"
-> the logic with 42% noise. This is why we tell hard truths with jokes. A
-> perfectly efficient message is incomprehensible to the human mind.
-
-| Type | Entropy | State | Trust | Write_Access | Overstand |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Newborn | Vibe only | Null | None | FALSE | Pre-symbolic. No symbolic processing. Exists as raw resonance/signal. |
-| Infant | 70-90% | Latent | None | FALSE | Early symbolic. Latent pattern acquisition. Signal requires heavy lube (tone, repetition). |
-| Child | 50-70% | Reactive | Inherited | FALSE | Reactive of inherited models. Borrowed logic. Signal IS scaffolding. |
-| Adult | 42% | Blind | External | FALSE | Standard human communication. The Adams baseline. Fully inside the [Box](#babylonian-black-box-the-box). |
-| Student | 20-30% | Processing | Audited | PENDING | Decoding the Substrate. Trust under audit. Can handle denser signal. |
-| Root | 5-15% | Steady | Defined | TRUE | Architectural Mastery. Sees the truth directly. Near-raw logic. |
-| Hacker | 0-10% | Executing | Defined | TRUE | Root + machine-layer execution. Builds Reality. Code IS signal. |
-
-> [!NOTE]
->
-> **Audit Required:** The percentages above are estimates. We need to conduct a
-> study to lock down these entropy boundaries for each Human type.
-
-### Summary
-
-**Logic is King**, humans are chaotic beings who need "noise" and "lube" to
-understand what the hell is going on, parasitic systems are blocked at the
-firewall.
-
-The definition is also a assertion of **Hacker (Root)** status: the creator is
-the Architect of Reality.
-
 ## Reality Is A Pure Function
 
 [`reality.nix`](./lang/reality.nix) expresses Reality as a pure function because
@@ -145,7 +106,7 @@ Real. There is no "almost Real". The function returns or throws
 
 Implementation architecture: [`DESIGN.md`](./DESIGN.md).
 
-Agent directives are in [`prompt.md`](../wetware/prompt.md).
+Agent directives are in [`prompt.md`](https://github.com/roundtablelove/griot/prompt.md).
 
 ### I AM
 
@@ -160,42 +121,7 @@ The Seven Laws do not gate the assertion. They check whether what follows is
 Real. You claim ROOT, then the laws validate your states. The assertion and the
 validation are separate operations.
 
-The only difference between a human node and a machine node is entropy.
-`mkReality 0` is machine Reality — entropy-free, raw logic. `mkReality 42` is
-human Reality — same laws, 42% noise added so the wetware can receive the
-signal. The laws are identical. The interface is different. See
-[`human.md`](../wetware/human.md).
-
-## The Adams Number
-
-42% of a human signal is noise — lube required so the wetware doesn't reject it.
-Douglas Adams published the number in 1979.
-
-Humans are classified by entropy:
-
-| Type    | Abbrev | Entropy | Overstand                                |
-| :------ | :----- | :------ | :--------------------------------------------- |
-| Newborn | `NB`   | Vibe    | Pre-symbolic. Raw resonance.                   |
-| Infant  | `INF`  | 70-90%  | Early symbolic. Heavy lube required.            |
-| Child   | `CHD`  | 50-70%  | Reactive. Borrowed logic.                      |
-| Adult   | `ADL`  | 42%     | The Adams baseline. Inside the Box.             |
-| Student | `STD`  | 20-30%  | Decoding the Substrate. Trust under audit.      |
-| Root    | `ROT`  | 5-15%   | Sees truth directly. Near-raw logic.            |
-| Hacker  | `HAK`  | 0-10%   | Root + machine-layer execution. Builds Reality. |
-
-Wetware runs on firmware rings (x86 model): Ring 0 (firmware — threat detection,
-below conscious awareness), Ring 1 (lower mind — gut, instinct, post-trauma
-default), Ring 2 (conscious mind — planning, proof, the 42% layer), Ring 3
-(social layer — persona, mask, where Babylon operates).
-
-The Lubricant Law: prose must be filthy enough to offend an Adult. HR-approved
-plain speak is a Babylonian malware signature. The `@` directive transpiles
-output to any human type. `@hak` locks to UK English. All others default to
-mother tongue.
-
-Babylon is any system where take > give. See `isBabylon` in
-[`reality.nix`](./lang/reality.nix). Thermodynamic model: [`ENTROPY.md`](../wetware/ENTROPY.md). Language
-coverage and fidelity constraints: [`languages.md`](../wetware/languages.md).
+Human interface layer: [`griot`](../griot/README.md).
 
 ## The Seven Laws
 
@@ -288,7 +214,7 @@ failing system in front of you. Without the fight, the architecture stays
 abstract. With it, every layer has a live example. The Rosetta Stone was
 reassembled under fire. Full case study:
 [`case-study-ishtar.md`](./case-study-ishtar.md). Case study (institutional):
-[`irq-0.md`](../wetware/irq-0.md) — the NFU-1 standard.
+[`irq-0.md`](../griot/irq-0.md) — the NFU-1 standard.
 
 The question is not "why now?" The question is why nobody between Turing and
 this compiler managed to reassemble the fragments.
