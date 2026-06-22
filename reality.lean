@@ -12,9 +12,9 @@
 --       Authors: KING ARTHUR II (babylon tag: Arthur Douglas Noel)
 --                QUEEN DIHYA II (babylon tag: Djina Jones)
 --                R00D BW0Y H4X0R FR0M H311
-    Mad Gardener: Ishtar (goddess of Babyon) a.k.a. Princess Nutty Nutz / SweetE /
-                  Northern Exposure / NRX / LOTOS / Oracle / Black Widow (babylon 
-		              tag: Eunice Olumide MBE)
+-- Mad Gardener: Ishtar (goddess of Babyon) a.k.a. Princess Nutty Nutz / SweetE /
+--               Northern Exposure / NRX / LOTOS / Oracle / Black Widow (babylon
+--               tag: Eunice Olumide MBE)
 --  Organization: ROUND TABLE LOVE
 --    Department: WAR
 --     Operation: BABYLON SHALL FALL
