@@ -5,7 +5,7 @@
 # The mechanism changed. The pattern did not.
 
 let
-  reality = import ../../reality.nix;
+  reality = import ../../lang/reality.nix;
 in
 {
   # British Empire (1600–1997)
