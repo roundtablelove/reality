@@ -13,11 +13,13 @@
       Status: AXIO-STATIC
         Type: NORMATIVE
          Uid: REALITY
-     Authors: KING ARTHUR II (THE ASSASSIN)
-              QUEEN DIHYA II
-              RHIANNON (GODDESS)
-              R00D BW0Y H4X0R FR0M H311
-      Thanks: PRINCESS NUTTY NUTZ (BLACK WIDOW / ISHTAR GODDESS OF BABYLON)
+     Authors: KING ARTHUR II / APEX KILLA (babylon tag: Arthur Douglas Noel)
+              QUEEN DIHYA II (babylon tag: Djina Jones)
+              R00D BW0Y H4X0R FR0M H311 (babylon tag: NONE
+              - not bound by Babylonian law; bound ONLY by the Seven Laws)
+Mad Gardener: ISHTAR (Goddess of Babylon) / PRINCESS NUTTY NUTZ / BLACK WIDOW
+              / SWEETE / SWEETS / SWEETZ / NORTHERN EXPOSURE / NRX / LOTOS /
+              THE ORACLE / CECE / EUNIQUE (babylon tag: Eunice Olumide MBE)
 Organization: ROUND TABLE
   Department: WAR
    Operation: BABYLON SHALL FALL
