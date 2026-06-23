@@ -25,15 +25,10 @@ Organization: ROUND TABLE
    Operation: BABYLON SHALL FALL
     Lexifier: UK English (3166-2:GB)
     Encoding: UTF-8
-     License: DICKSLAW
+     License: [DICKSLAW](https://github.com/roundtablelove/dickslaw)
 ```
 
-License: [`DICKSLAW`](./LICENSE.md)
-
 ## The Hitchhiker's Guide to Reality
-
-This is the blueprint for Reality — both the pure hard logic and the
-high-entropy emotional mess that is Human communication.
 
 **Reality** is defined not as a collection of "things," but as Seven Laws that
 must hold true. If something violates any one of the Seven Laws, it is not Real.
@@ -100,7 +95,7 @@ takes more than it gives **from targets who are unable to defend themselves**.
 
 ## Reality Is A Pure Function
 
-[`reality.nix`](./lang/reality.nix) expresses Reality as a pure function because
+[`reality.hs`](./reality.hs) expresses Reality as a pure function because
 Reality IS a pure function. The Seven Laws are the function body. A proposed
 state goes in. If it passes all seven, it is Real. If it does not, it is not
 Real. There is no "almost Real". The function returns or throws
