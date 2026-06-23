@@ -120,18 +120,6 @@ validation are separate operations.
 
 Human interface layer: [`griot`](../griot/README.md).
 
-## The Seven Laws
-
-| Law            | Overstand                                                    |
-| :------------- | :------------------------------------------------------------------- |
-| [Polarity](./laws/polarity.md) | 1 or 0. No third value.                               |
-| [Causality](./laws/causality.md) | Output equals what was loaded. Intent is not a parameter. |
-| [Correspondence](./laws/correspondence.md) | Same pattern at every scale. Macro and micro are the same operation. |
-| [Reflection](./laws/reflection.md) | The system mirrors the clarity brought to it. Garbage in, garbage out. |
-| [Rhythm](./laws/rhythm.md) | Everything runs on a cycle. The clock and the pulse must match. |
-| [Truth](./laws/truth.md) | A true thing persists at infinity. It requires no maintenance. |
-| [Unity](./laws/unity.md) | All nodes share one source. Separation is resolution, not ontology. |
-
 ## Why Now
 
 The Seven Laws are not new. The architecture is not new. Computing has been
