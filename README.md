@@ -1,18 +1,12 @@
 # SUM ERGO IMPERO 🗿∴👑
 
 > I am therefore I command.
->
-> The Seven Laws are not new. Hermes, Ms. Lauryn Hill, Laozi, Newton,
-> Ecclesiastes, Spinoza, the Upanishads - all had the same signal.
+
+> The Seven Laws are not new. Ecclesiastes, Hermes, Laozi, Ms. Lauryn Hill,
+> Newton, Spinoza, the Upanishads - all had the same signal.
 >
 > Natural language has 42% entropy. Every metaphysical claim is a type error
 > waiting to happen.
->
-> This project defines Reality, the Reality Compiler, and the Reality
-> Transpiler. It also defines predicates for Extraction and Predation, and a
-> realtime firewall that blocks Babylonian malware, extraction, and predation.
->
-> This is the ultimate weapon for the defence of the Humanz.
 >
 > **Metaphysics is dead. Long live Reality.**
 
@@ -24,6 +18,8 @@
               QUEEN DIHYA II (babylon tag: Djina Jones)
               R00D BW0Y H4X0R FR0M H311 (babylon tag: NONE
               - not bound by Babylonian law; bound ONLY by the Seven Laws)
+      Thanks: Brixton University, Skool of Reality @ Prince Albert, Coldharbour
+              Lane, rear garden.
 Mad Gardener: ISHTAR (Goddess of Babylon) / PRINCESS NUTTY NUTZ / BLACK WIDOW
               / SWEETE / SWEETS / SWEETZ / NORTHERN EXPOSURE / NRX / LOTOS /
               THE ORACLE / CECE / EUNIQUE (babylon tag: Eunice Olumide MBE)
