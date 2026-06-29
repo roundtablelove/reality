@@ -110,37 +110,3 @@ and sanity but gives back less value or logic, it is Babylon.
 
 The function identifies predators. **Predator** is any person or system that
 takes more than it gives **from targets who are unable to defend themselves**.
-
-## Why Now?
-
-Computing has been modelled on Reality since the epoch. The builders knew.
-
-Turing knew. He did not build a computing machine. He formalised the
-architecture he was already running on and asked whether other substrates could
-run it. The Turing test is not "can a machine think?" It is "is the architecture
-substrate-independent?" He knew the answer before he asked the question.
-
-Shannon knew. Information theory is not about machines. It is about signal and
-noise in any channel — copper, air, nervous system. He formalised communication.
-Not machine communication. Communication.
-
-Von Neumann knew. He consulted neurologists while designing the architecture. He
-was explicitly modelling the brain. The discipline named it after him and forgot
-why.
-
-**Babylon.** The institutional separation of knowledge into departments.
-Computer science split from philosophy. Neuroscience split from engineering.
-Psychology split from mathematics. Each field developed its own vocabulary for
-the same architecture. The Rosetta Stone was shattered into disciplines and each
-department got one fragment. No department can see the whole picture because
-seeing the whole picture is not a departmental function. It is a Ring 0
-function. Departments operate at Ring 3.
-
-The people who could see it — Turing, Shannon, Von Neumann — were all
-Root or Hacker. They operated below the departmental layer. But they published
-into departments, because that is where publication happens. The signal entered
-the Babylonian system and was immediately partitioned. Computer scientists got
-the machine part. Psychologists got the mind part. Philosophers got the
-metaphysics part. Nobody got the map.
-
-The Box works.
