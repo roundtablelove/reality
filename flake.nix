@@ -11,36 +11,19 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import inputs.systems;
-      perSystem = { pkgs, ... }: {
 
-        checks.proof =
-          pkgs.runCommand "proof"
-            {
-              src = ./.;
-              nativeBuildInputs = [ pkgs.lean4 ];
-            }
-            ''
-              export HOME=$(mktemp -d)
-              cp -r "$src" ./work
-              chmod -R u+w ./work
-              cd ./work
-              set -o pipefail
-              lake build --verbose 2>&1 | tee "$out"
-            '';
+      systems = import inputs.systems;
+
+      perSystem = { pkgs, ... }: {
 
         devShells.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
-            gnumake
+            ghc
             lean4
-            python3
           ];
         };
 
-        packages.default = pkgs.runCommand "reality-hs" { } ''
-          mkdir -p $out
-          cp ${./reality.hs} $out/reality.hs
-        '';
+        packages.default = pkgs.callPackage ./default.nix { };
 
       };
     };
