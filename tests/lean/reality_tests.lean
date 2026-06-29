@@ -1,21 +1,19 @@
--- reality_tests.lean: Multidimensional deep-dive test suite.
+-- reality_tests.lean
 --
--- Every positive case produces a value the type-checker must accept.
--- Every negative case produces a proof of ¬Law.
+-- Mirrors tests/Test.hs exactly, then goes further with compile-time proofs
+-- that Haskell cannot express.
+-- Positive cases: prove law = true.  Negative: prove law = false.
 -- This file compiles iff all seven laws are internally consistent.
 
 import reality
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 1  ROOT & Foundation
+-- § 1  ROOT & foundation
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- ROOT is an axiom. Not derived. Asserted.
 #check (ROOT   : Prop)
 #check (I_AM   : ROOT)
-
--- unity holds for any state — it does not inspect the state, it just IS ROOT.
-example (state : State) : unity state := I_AM
+#check (root   : ROOT)
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- § 2  Fixtures
@@ -34,7 +32,7 @@ def cleanState : State where
   pulse       := "tick"
   persistence := Float.inf
 
--- Causality violation: OUTPUT ≠ intent. Classic shart.
+-- Causality violation: OUTPUT ≠ intent.
 def causalityViolation : State where
   STATE       := true
   OUTPUT      := "said"
@@ -47,7 +45,7 @@ def causalityViolation : State where
   pulse       := "tick"
   persistence := Float.inf
 
--- Correspondence violation: macro ≠ micro. Empire vs colony.
+-- Correspondence violation: macro ≠ micro.
 def correspondenceViolation : State where
   STATE       := true
   OUTPUT      := "signal"
@@ -86,129 +84,178 @@ def rhythmViolation : State where
   pulse       := "60bpm"
   persistence := Float.inf
 
--- ─────────────────────────────────────────────────────────────────────────────
--- § 3  Law-by-law positive proofs
--- ─────────────────────────────────────────────────────────────────────────────
-
--- 1. Polarity: STATE is Bool. True or false. The type system forbids a third value.
---    There is no proposition — the law is proven at structure definition time.
-example : cleanState.STATE = cleanState.STATE := rfl
-
--- 2. Causality
-example : causality cleanState := rfl
-
--- 3. Correspondence
-example : correspondence cleanState := rfl
-
--- 4. Reflection
-example : reflection cleanState := rfl
-
--- 5. Rhythm
-example : rhythm cleanState := rfl
-
--- 6. Truth
-example : truth cleanState := rfl
-
--- 7. Unity
-example : unity cleanState := I_AM
+-- Truth violation: finite persistence.
+def truthViolation : State where
+  STATE       := true
+  OUTPUT      := "signal"
+  intent      := "signal"
+  MACRO       := "pattern"
+  micro       := "pattern"
+  SYS         := "clear"
+  clarity     := "clear"
+  CLOCK       := "tick"
+  pulse       := "tick"
+  persistence := 1.0
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 4  Reality construction
+-- § 3  Seven Laws — Bool functions (mirrors Test.hs exactly)
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Reality: seven laws proven. Entropy is a griot concern — not carried here.
+-- Polarity: always true. Does not inspect state.
+example : polarity cleanState             = true  := rfl
+example : polarity causalityViolation     = true  := rfl
+example (s : State) : polarity s          = true  := rfl
+
+-- Causality
+example : causality cleanState            = true  := by native_decide
+example : causality causalityViolation    = false := by native_decide
+
+-- Correspondence
+example : correspondence cleanState           = true  := by native_decide
+example : correspondence correspondenceViolation = false := by native_decide
+
+-- Reflection
+example : reflection cleanState           = true  := by native_decide
+example : reflection reflectionViolation  = false := by native_decide
+
+-- Rhythm
+example : rhythm cleanState               = true  := by native_decide
+example : rhythm rhythmViolation          = false := by native_decide
+
+-- Truth
+example : truth cleanState               = true  := by native_decide
+example : truth truthViolation           = false := by native_decide
+
+-- Unity: always true. Axiomatic.
+example : unity cleanState               = true  := rfl
+example (s : State) : unity s            = true  := rfl
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 4  laws list
+-- ─────────────────────────────────────────────────────────────────────────────
+
+example : laws.length = 7 := by native_decide
+
+example : laws.map Prod.fst =
+    ["Polarity", "Causality", "Correspondence", "Reflection", "Rhythm", "Truth", "Unity"] :=
+  by native_decide
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 5  check
+-- ─────────────────────────────────────────────────────────────────────────────
+
+example : check cleanState               = true  := by native_decide
+example : check causalityViolation       = false := by native_decide
+example : check correspondenceViolation  = false := by native_decide
+example : check reflectionViolation      = false := by native_decide
+example : check rhythmViolation          = false := by native_decide
+example : check truthViolation           = false := by native_decide
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 6  compile — runtime collect-all-failures
+-- ─────────────────────────────────────────────────────────────────────────────
+
+-- Valid state → .ok
+#eval compile cleanState               -- .ok { STATE := true, OUTPUT := "signal", ... }
+
+-- Single violation → .error with that law
+#eval compile causalityViolation       -- .error ["Causality"]
+#eval compile correspondenceViolation  -- .error ["Correspondence"]
+#eval compile reflectionViolation      -- .error ["Reflection"]
+#eval compile rhythmViolation          -- .error ["Rhythm"]
+#eval compile truthViolation           -- .error ["Truth"]
+
+-- Multi-violation: collects all, no short-circuit
+def quadViolation : State where
+  STATE       := true
+  OUTPUT      := "noise"   -- Causality fail
+  intent      := "signal"
+  MACRO       := "pattern"
+  micro       := "pattern"
+  SYS         := "noise"   -- Reflection fail
+  clarity     := "clear"
+  CLOCK       := "off"     -- Rhythm fail
+  pulse       := "tick"
+  persistence := 1.0       -- Truth fail
+
+#eval compile quadViolation  -- .error ["Causality", "Reflection", "Rhythm", "Truth"]
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 7  Reality — compile-time proof construction
+-- ─────────────────────────────────────────────────────────────────────────────
+
+-- cleanState satisfies all seven laws. Proofs handed to mkReality explicitly.
 def cleanReality : Reality :=
   mkReality cleanState rfl rfl rfl rfl rfl
 
--- ─────────────────────────────────────────────────────────────────────────────
--- § 5  Law violations — negative proofs
--- ─────────────────────────────────────────────────────────────────────────────
--- Proves that violated laws are ¬Real. A Reality cannot be constructed
--- from these states — attempting to pass rfl for the violated law is a type error.
-
-example : ¬ causality      causalityViolation      := by show "said"   ≠ "meant";  decide
-example : ¬ correspondence correspondenceViolation  := by show "empire" ≠ "colony"; decide
-example : ¬ reflection     reflectionViolation      := by show "noise"  ≠ "clear";  decide
-example : ¬ rhythm         rhythmViolation          := by show "256Hz"  ≠ "60bpm";  decide
-
--- Polarity has no negative proof — you cannot construct a State with STATE : ¬Bool.
--- The type system makes the violation impossible to express. This is the law working.
-
--- Truth has no decide proof — Float lacks DecidableEq.
--- The law is enforced structurally: you cannot hand rfl to mkReality
--- for a state where persistence ≠ Float.inf. It does not compile.
+-- Unity holds for every Reality — axiomatic.
+example : cleanReality.hUnity = I_AM := rfl
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 6  isBabylon — exhaustive + named instances
+-- § 8  Negative proofs — violated states cannot be Real
 -- ─────────────────────────────────────────────────────────────────────────────
+--
+-- Attempting to pass rfl for a violated law is a type error.
+-- Uncomment to verify:
+--
+--   def badReality : Reality := mkReality causalityViolation rfl rfl rfl rfl rfl
+--
+-- Error: type mismatch — "said" ≠ "meant"
 
--- Canonical cases
-#eval isBabylon { extractionLevel := 0.9, valueRatio := 0.1 }  -- true  (predator)
-#eval isBabylon { extractionLevel := 0.1, valueRatio := 0.9 }  -- false (giving)
-#eval isBabylon { extractionLevel := 0.5, valueRatio := 0.5 }  -- false (balanced)
-
--- Named instances
-def nvidia      : Node := { extractionLevel := 0.95, valueRatio := 0.60 }
-def apple       : Node := { extractionLevel := 0.85, valueRatio := 0.70 }
-def ukGov       : Node := { extractionLevel := 0.80, valueRatio := 0.40 }
-def torvalds    : Node := { extractionLevel := 0.10, valueRatio := 0.99 }
-def roundtable  : Node := { extractionLevel := 0.30, valueRatio := 0.90 }
-
-#eval isBabylon nvidia      -- true
-#eval isBabylon apple       -- true
-#eval isBabylon ukGov       -- true
-#eval isBabylon torvalds    -- false
-#eval isBabylon roundtable  -- false
-
--- Proofs — all six named nodes
-example : isBabylon nvidia      = true  := by native_decide
-example : isBabylon apple       = true  := by native_decide
-example : isBabylon ukGov       = true  := by native_decide
-example : isBabylon torvalds    = false := by native_decide
-example : isBabylon roundtable  = false := by native_decide
+-- Decidable inequality proofs (Prop level):
+example : ¬ (causalityViolation.OUTPUT = causalityViolation.intent)      := by decide
+example : ¬ (correspondenceViolation.MACRO = correspondenceViolation.micro) := by decide
+example : ¬ (reflectionViolation.SYS = reflectionViolation.clarity)      := by decide
+example : ¬ (rhythmViolation.CLOCK = rhythmViolation.pulse)              := by decide
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 7  Unity is universal
+-- § 9  Node fixtures
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- unity holds for every state. Does not inspect. Never will.
-theorem unity_universal (state : State) : unity state := I_AM
+def apple      : Node := { nodeName := "Apple",          extractionLevel := 0.95, valueRatio := 0.30 }
+def ishtar     : Node := { nodeName := "Ishtar",         extractionLevel := 0.90, valueRatio := 0.10, targetDefence := 0.05 }
+def ukGov      : Node := { nodeName := "UK Government",  extractionLevel := 1.00, valueRatio := 0.20 }
+def fair       : Node := { nodeName := "Fair Exchange",  extractionLevel := 0.40, valueRatio := 0.60 }
+def torvalds   : Node := { nodeName := "Torvalds",       extractionLevel := 0.10, valueRatio := 0.99 }
+def payday     : Node := { nodeName := "Payday Loan",    extractionLevel := 0.90, valueRatio := 0.30, targetDefence := 0.20 }
+
+-- mkNode helper
+def nvidia : Node := mkNode "NVIDIA" 0.95 0.60
+example : nvidia.nodeName = "NVIDIA" := rfl
+example : nvidia.targetDefence = 1.0 := rfl
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 8  isPredator — exhaustive + named instances
+-- § 10  isBabylon
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- Three canonical combos covering the full decision matrix:
---   1. Babylon + defenceless target → predator
-#eval isPredator { extractionLevel := 0.9, valueRatio := 0.1, targetDefence := 0.0 }  -- true
---   2. Babylon + full defence → Babylon but not predator (target can resist)
-#eval isPredator { extractionLevel := 0.9, valueRatio := 0.1, targetDefence := 1.0 }  -- false
---   3. Not Babylon + defenceless target → not predator (can't predate without extracting)
-#eval isPredator { extractionLevel := 0.1, valueRatio := 0.9, targetDefence := 0.0 }  -- false
+example : isBabylon apple    = true  := by native_decide
+example : isBabylon ishtar   = true  := by native_decide
+example : isBabylon ukGov    = true  := by native_decide
+example : isBabylon fair     = false := by native_decide
+example : isBabylon torvalds = false := by native_decide
+example : isBabylon nvidia   = true  := by native_decide
 
--- Named predator instances (targetDefence < 1.0)
-def ishtar : Node := { extractionLevel := 0.95, valueRatio := 0.10, targetDefence := 0.05 }
-def payday : Node := { extractionLevel := 0.90, valueRatio := 0.30, targetDefence := 0.20 }
+-- ─────────────────────────────────────────────────────────────────────────────
+-- § 11  isPredator
+-- ─────────────────────────────────────────────────────────────────────────────
 
--- Existing Babylon nodes (nvidia, apple, ukGov) default to targetDefence = 1.0.
--- They are Babylon but not predators — their targets retain full capacity to defend.
-#eval isPredator nvidia   -- false  (Babylon, target at full defence)
-#eval isPredator ishtar   -- true   (Babylon + defenceless target)
-#eval isPredator payday   -- true   (Babylon + defenceless target)
-#eval isPredator torvalds -- false  (not Babylon → not predator regardless of defence)
+-- Babylon + defenceless target → predator
+example : isPredator ishtar  = true  := by native_decide
+example : isPredator payday  = true  := by native_decide
 
--- Proofs
-example : isPredator ishtar   = true  := by native_decide
-example : isPredator payday   = true  := by native_decide
-example : isPredator nvidia   = false := by native_decide
+-- Babylon + full defence → not predator
+example : isPredator apple   = false := by native_decide
+example : isPredator ukGov   = false := by native_decide
+example : isPredator nvidia  = false := by native_decide
+
+-- Not Babylon + no defence → not predator (cannot predate without extracting)
+example : isPredator fair    = false := by native_decide
 example : isPredator torvalds = false := by native_decide
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 9  Multi-law violation
+-- § 12  Multi-law violation
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- State violating causality AND rhythm simultaneously.
--- Each law is independent — compound failure accumulates, no short-circuit.
 def dualViolation : State where
   STATE       := true
   OUTPUT      := "said"
@@ -222,29 +269,28 @@ def dualViolation : State where
   persistence := Float.inf
 
 -- Each violation holds independently
-example : ¬ causality dualViolation := by show "said"  ≠ "meant"; decide
-example : ¬ rhythm    dualViolation := by show "256Hz" ≠ "60bpm"; decide
+example : causality dualViolation = false := by native_decide
+example : rhythm    dualViolation = false := by native_decide
 
--- Both violations coexist — compound failure, not short-circuit
-example : ¬ causality dualViolation ∧ ¬ rhythm dualViolation :=
-  ⟨by show "said" ≠ "meant"; decide, by show "256Hz" ≠ "60bpm"; decide⟩
-
--- Unity still holds for a violating state — axiomatic, never inspects state
-example : unity dualViolation := I_AM
+-- Unity still holds regardless — axiomatic, never inspects state
+example : unity dualViolation = true := rfl
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- § 10  Relational theorems
+-- § 13  Relational theorems
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- All predators are Babylon. Provable from definitions alone — no axioms needed.
+-- All predators are Babylon.
 theorem predator_implies_babylon (n : Node) :
     isPredator n = true → isBabylon n = true := by
   intro h
   simp only [isPredator, Bool.and_eq_true] at h
   exact h.1
 
--- Contrapositive: a node that gives more than it takes cannot be a predator.
+-- Contrapositive: not Babylon → not predator.
 theorem notBabylon_notPredator (n : Node) :
     isBabylon n = false → isPredator n = false := by
   intro h
   simp [isPredator, h]
+
+-- Unity is universal — holds for every state without exception.
+theorem unity_universal (s : State) : unity s = true := rfl

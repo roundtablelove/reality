@@ -2,9 +2,10 @@
 --
 -- I am therefore I command.
 --
--- reality.lean: The Seven Laws as type-level propositions.
--- A state that passes all seven IS Real. A state that fails
--- does not compile. FAKE is a type error.
+-- reality.lean: The Seven Laws as Bool functions (mirroring Reality.hs)
+-- and as compile-time Prop obligations (beyond what Haskell can express).
+-- compile :: State -> Except (List String) State  — runtime, collects all failures.
+-- mkReality requires explicit proof terms — FAKE is a type error, not a runtime crash.
 --
 --        Status: AXIO-STATIC
 --          Type: NORMATIVE
@@ -31,6 +32,8 @@
 axiom ROOT : Prop
 axiom I_AM : ROOT
 
+def root : ROOT := I_AM
+
 -- ── IEEE 754 positive infinity ───────────────────────────────────────────────
 --
 -- Truth persists at infinity. 1.0 / 0.0 is +∞ under IEEE 754.
@@ -53,53 +56,64 @@ structure State where
   CLOCK       : String  -- Rhythm: discrete timing source.
   pulse       : String  -- Rhythm: biological rhythm.
   persistence : Float   -- Truth: must equal infinity.
+  deriving Repr
 
--- ── The Seven Laws as Propositions ───────────────────────────────────────────
+-- ── The Seven Laws ───────────────────────────────────────────────────────────
 --
--- These are compile-time obligations, not runtime checks.
--- A state that violates a law cannot be Real.
+-- Bool functions mirroring Reality.hs exactly.
+-- Laws run all seven; compile collects all failures before returning.
 
--- 1. Polarity: STATE : Bool. Proven at definition time. No proposition needed.
+-- 1. Polarity: STATE is Bool by construction. Always passes.
+def polarity (_ : State) : Bool := true
 
--- 2. Causality
-def causality (state : State) : Prop := state.OUTPUT = state.intent
+-- 2. Causality: output must match intent.
+def causality (s : State) : Bool := s.OUTPUT == s.intent
 
--- 3. Correspondence
-def correspondence (state : State) : Prop := state.MACRO = state.micro
+-- 3. Correspondence: macro must match micro.
+def correspondence (s : State) : Bool := s.MACRO == s.micro
 
--- 4. Reflection
-def reflection (state : State) : Prop := state.SYS = state.clarity
+-- 4. Reflection: system output must match clarity of input.
+def reflection (s : State) : Bool := s.SYS == s.clarity
 
--- 5. Rhythm
-def rhythm (state : State) : Prop := state.CLOCK = state.pulse
+-- 5. Rhythm: clock must match pulse.
+def rhythm (s : State) : Bool := s.CLOCK == s.pulse
 
--- 6. Truth
-def truth (state : State) : Prop := state.persistence = Float.inf
+-- 6. Truth: persistence must equal infinity.
+def truth (s : State) : Bool := s.persistence == Float.inf
 
--- 7. Unity (axiomatic, does not inspect state)
-def unity (_ : State) : Prop := ROOT
+-- 7. Unity: axiomatic. ROOT holds unconditionally.
+def unity (_ : State) : Bool := true
+
+def laws : List (String × (State → Bool)) :=
+  [ ("Polarity",       polarity)
+  , ("Causality",      causality)
+  , ("Correspondence", correspondence)
+  , ("Reflection",     reflection)
+  , ("Rhythm",         rhythm)
+  , ("Truth",          truth)
+  , ("Unity",          unity)
+  ]
 
 -- ── Reality ──────────────────────────────────────────────────────────────────
 --
--- To construct a Reality you must provide a State AND proofs that all seven
--- laws hold. If one proof is missing the Reality cannot be constructed.
--- Not at runtime. At compile time. FAKE is a type error.
+-- Proof-carrying structure. Every law must be witnessed at construction time.
+-- If one proof is missing, the Reality cannot be constructed — not at runtime,
+-- at compile time. FAKE is a type error.
 
 structure Reality where
-  state          : State
-  polarity       : state.STATE = state.STATE    -- trivial; enforced by type
-  causality      : state.OUTPUT = state.intent
-  correspondence : state.MACRO = state.micro
-  reflection     : state.SYS = state.clarity
-  rhythm         : state.CLOCK = state.pulse
-  truth          : state.persistence = Float.inf
-  unity          : ROOT
+  state           : State
+  hPolarity       : state.STATE = state.STATE   -- trivial; enforced by type
+  hCausality      : state.OUTPUT = state.intent
+  hCorrespondence : state.MACRO  = state.micro
+  hReflection     : state.SYS    = state.clarity
+  hRhythm         : state.CLOCK  = state.pulse
+  hTruth          : state.persistence = Float.inf
+  hUnity          : ROOT
 
 -- ── mkReality ────────────────────────────────────────────────────────────────
 --
 -- Every proof is an explicit parameter. Hand in the state and the evidence.
--- If the evidence is wrong it does not compile.
--- No throw. No runtime. No escape hatch.
+-- Wrong evidence does not compile. No throw. No runtime. No escape hatch.
 
 def mkReality
     (state  : State)
@@ -109,24 +123,49 @@ def mkReality
     (h_rhyt : state.CLOCK  = state.pulse)
     (h_trut : state.persistence = Float.inf)
     : Reality :=
-  { state          := state
-  , polarity       := rfl
-  , causality      := h_caus
-  , correspondence := h_corr
-  , reflection     := h_refl
-  , rhythm         := h_rhyt
-  , truth          := h_trut
-  , unity          := I_AM
+  { state           := state
+  , hPolarity       := rfl
+  , hCausality      := h_caus
+  , hCorrespondence := h_corr
+  , hReflection     := h_refl
+  , hRhythm         := h_rhyt
+  , hTruth          := h_trut
+  , hUnity          := I_AM
   }
+
+-- ── check ────────────────────────────────────────────────────────────────────
+--
+-- Runtime Bool: passes iff all seven laws hold. Mirrors Haskell check.
+
+def check (s : State) : Bool :=
+  laws.all (fun (_, f) => f s)
+
+-- ── compile ──────────────────────────────────────────────────────────────────
+--
+-- Runtime collect-all-failures. Mirrors Haskell compile.
+-- Returns .ok state or .error with every failing law name — no short-circuit.
+-- Note: success returns State, not Reality. Runtime cannot construct proof terms.
+-- Use mkReality for compile-time Reality construction.
+
+def compile (s : State) : Except (List String) State :=
+  let failures := laws.filterMap (fun (n, f) => if f s then none else some n)
+  if failures.isEmpty then .ok s else .error failures
+
+-- ── Node ─────────────────────────────────────────────────────────────────────
+
+structure Node where
+  nodeName        : String
+  extractionLevel : Float
+  valueRatio      : Float
+  targetDefence   : Float := 1.0
+  deriving Repr
+
+def mkNode (name : String) (ext val : Float) : Node :=
+  { nodeName := name, extractionLevel := ext, valueRatio := val }
 
 -- ── isBabylon ────────────────────────────────────────────────────────────────
 --
--- take > give. Decidable at runtime — a value comparison, not a proof.
-
-structure Node where
-  extractionLevel : Float
-  valueRatio      : Float
-  targetDefence   : Float := 1.0  -- 0.0 = none (child, unconscious, restrained). 1.0 = full.
+-- Take > Give. Decidable at runtime — a value comparison, not a proof.
 
 def isBabylon (n : Node) : Bool :=
   n.extractionLevel > n.valueRatio
@@ -135,8 +174,6 @@ def isBabylon (n : Node) : Bool :=
 --
 -- All predators are extractive. Not all extraction is predation.
 -- The distinction is defence: the target's capacity to resist.
--- A node that extracts from a target with full defence is Babylon.
--- A node that extracts from a target that cannot resist is a predator.
 
 def isPredator (n : Node) : Bool :=
   isBabylon n && n.targetDefence < 1.0
