@@ -380,35 +380,38 @@ example : unity quadViolation = true := rfl
 -- § 18  Formal entailment — check ↔ all laws
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- check is definitionally the conjunction of all laws.
--- Unfold check and laws, simplify polarity/unity (always true), then the
--- remaining Bool && chain decomposes into individual law equalities.
-
+-- check unfolds to the Bool-and of the five non-trivial laws
+-- (polarity and unity are always true and simplify away).
 private theorem unfold_check (s : State) :
     check s = (causality s && (correspondence s && (reflection s && (rhythm s && truth s)))) := by
   simp [check, laws, polarity, unity, Bool.and_true]
 
--- check = true implies each law individually.
+-- check = true implies each law. Strategy: simp rewrites the Bool-and chain
+-- into a Prop conjunction via Bool.and_eq_true, then extract the component.
 theorem check_implies_causality (s : State) : check s = true → causality s = true := by
-  rw [unfold_check]; intro h; exact (Bool.and_eq_true.mp h).1
+  rw [unfold_check]
+  simp only [Bool.and_eq_true]
+  exact fun h => h.1
 
 theorem check_implies_correspondence (s : State) : check s = true → correspondence s = true := by
-  rw [unfold_check]; intro h
-  exact (Bool.and_eq_true.mp (Bool.and_eq_true.mp h).2).1
+  rw [unfold_check]
+  simp only [Bool.and_eq_true]
+  exact fun h => h.2.1
 
 theorem check_implies_reflection (s : State) : check s = true → reflection s = true := by
-  rw [unfold_check]; intro h
-  exact (Bool.and_eq_true.mp (Bool.and_eq_true.mp (Bool.and_eq_true.mp h).2).2).1
+  rw [unfold_check]
+  simp only [Bool.and_eq_true]
+  exact fun h => h.2.2.1
 
 theorem check_implies_rhythm (s : State) : check s = true → rhythm s = true := by
-  rw [unfold_check]; intro h
-  exact (Bool.and_eq_true.mp
-    (Bool.and_eq_true.mp (Bool.and_eq_true.mp (Bool.and_eq_true.mp h).2).2).2).1
+  rw [unfold_check]
+  simp only [Bool.and_eq_true]
+  exact fun h => h.2.2.2.1
 
 theorem check_implies_truth (s : State) : check s = true → truth s = true := by
-  rw [unfold_check]; intro h
-  exact (Bool.and_eq_true.mp
-    (Bool.and_eq_true.mp (Bool.and_eq_true.mp (Bool.and_eq_true.mp h).2).2).2).2
+  rw [unfold_check]
+  simp only [Bool.and_eq_true]
+  exact fun h => h.2.2.2.2
 
 -- All laws true → check true (converse).
 theorem all_laws_imply_check (s : State)
@@ -418,8 +421,7 @@ theorem all_laws_imply_check (s : State)
     (hry : rhythm         s = true)
     (ht  : truth          s = true)
     : check s = true := by
-  rw [unfold_check]
-  simp [hc, hco, hr, hry, ht]
+  simp [check, laws, polarity, unity, hc, hco, hr, hry, ht]
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- § 19  Relational theorems
@@ -438,7 +440,9 @@ theorem notBabylon_notPredator (n : Node) :
   intro h; simp [isPredator, h]
 
 -- mkNode always produces targetDefence = 1.0, so never a predator.
+-- Proof: unfold, prove 1.0 < 1.0 = false via native_decide, rewrite with Bool.and_false.
 theorem mkNode_notPredator (name : String) (ext val : Float) :
     isPredator (mkNode name ext val) = false := by
-  simp only [isPredator, mkNode, isBabylon,
-             show (1.0 : Float) < 1.0 = false from by native_decide, Bool.and_false]
+  simp only [isPredator, mkNode, isBabylon]
+  have h : (1.0 : Float) < 1.0 = false := by native_decide
+  rw [h, Bool.and_false]
