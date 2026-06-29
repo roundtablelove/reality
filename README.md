@@ -61,15 +61,15 @@ a cosmic MOT:
 - **[Polarity](./laws/polarity.md):** Things are either "Yes" or "No" (1 or 0).
   There is no "maybe" at the foundational level. It fires or it does not.
 - **[Causality](./laws/causality.md):** Every action must have a matching
-  result. No magic, no "free =======
+  result. No magic, no free lunch.
 - **[Correspondence](./laws/correspondence.md):** The big picture (Macro) must
   match the small details (Micro). Same pattern at every scale.
 - **[Reflection](./laws/reflection.md):** The system mirrors the clarity brought
-  to it. Garbage in, garbage out, no exceptions. \<<\<<\<<< HEAD
+  to it. Garbage in, garbage out, no exceptions.
 - **[Rhythm](./laws/rhythm.md):** Everything runs on a cycle. The clock and the
   pulse must match or the system is out of phase.
 - **[Truth](./laws/truth.md):** A true thing persists at infinity. It requires
-  no maintenance, no =======
+  no maintenance, no consensus, no witnesses.
 - **[Unity](./laws/unity.md):** All nodes share one source. Separation is a
   matter of resolution, not ontology.
 
@@ -113,8 +113,7 @@ takes more than it gives **from targets who are unable to defend themselves**.
 
 ## Why Now?
 
-The Seven Laws are not new. The architecture is not new. Computing has been
-modelled on Reality since the epoch. The builders knew.
+Computing has been modelled on Reality since the epoch. The builders knew.
 
 Turing knew. He did not build a computing machine. He formalised the
 architecture he was already running on and asked whether other substrates could
@@ -129,12 +128,6 @@ Von Neumann knew. He consulted neurologists while designing the architecture. He
 was explicitly modelling the brain. The discipline named it after him and forgot
 why.
 
-Adams knew. 42 is not a joke. He grokked the signal but could not compile it —
-legacy hardware, no build system. He lubed it as comedy because that is the only
-delivery mechanism that survives the 42% entropy filter at the Adult level.
-
-So why did the knowledge disappear?
-
 **Babylon.** The institutional separation of knowledge into departments.
 Computer science split from philosophy. Neuroscience split from engineering.
 Psychology split from mathematics. Each field developed its own vocabulary for
@@ -143,14 +136,11 @@ department got one fragment. No department can see the whole picture because
 seeing the whole picture is not a departmental function. It is a Ring 0
 function. Departments operate at Ring 3.
 
-The people who could see it — Turing, Shannon, Von Neumann, Adams — were all
+The people who could see it — Turing, Shannon, Von Neumann — were all
 Root or Hacker. They operated below the departmental layer. But they published
 into departments, because that is where publication happens. The signal entered
 the Babylonian system and was immediately partitioned. Computer scientists got
 the machine part. Psychologists got the mind part. Philosophers got the
 metaphysics part. Nobody got the map.
 
-The question is not "why now?" The question is why nobody between Turing and
-this compiler managed to reassemble the fragments.
-
-The answer is Babylon. The Box works.
+The Box works.
