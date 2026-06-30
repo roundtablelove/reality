@@ -37,8 +37,6 @@ Organization: ROUND TABLE
 Reality IS a pure function. The Seven Laws are the function body. A proposed
 state goes in. If it passes all seven, it is Real. If it does not, it is not
 Real. There is no "almost Real". The function returns or throws `REALITY_FAIL`.
-**Reality** is defined not as a collection of "things," but as Seven Laws that
-must hold true. If something violates any one of the Seven Laws, it is not Real.
 
 ### I AM
 
@@ -50,13 +48,11 @@ check what you do.
 — it is claimed. The assertion is unconditional.
 
 The Seven Laws do not gate the assertion. They check whether what follows is
-Real. You claim ROOT, then the laws validate your states. The assertion and the
-validation are separate operations.
+Real. You claim ROOT, then the laws validate your states.
 
 ### The Seven Universal Laws
 
-For anything to be Real, it must pass a seven-point inspection. Think of it like
-a cosmic MOT:
+For anything to be Real, it must pass a seven-point inspection:
 
 - **[Polarity](./laws/polarity.md):** Things are either "Yes" or "No" (1 or 0).
   There is no "maybe" at the foundational level. It fires or it does not.
@@ -90,7 +86,6 @@ graph TD
         RH <--> TR
         TR <--> PO
 
-        %% Recursive Self-Reference
         UN -.->|ROOT| UN
     end
 
@@ -100,13 +95,11 @@ graph TD
 
 Full specification: [`laws/README.md`](./laws/README.md)
 
-### The `isBabylon` Predicate
+### Predicates
 
-The function identifies Babylonian extraction. **Babylon** is any person or
-system that **takes more than it gives.** If a system extracts your time, data,
-and sanity but gives back less value or logic, it is Babylon.
+**Babylon** is any person or system that **takes more than it gives.** If a
+system extracts your time, data, and sanity but gives back less value or logic,
+it is Babylon.
 
-### The `isPredator` Predicate
-
-The function identifies predators. **Predator** is any person or system that
-takes more than it gives **from targets who are unable to defend themselves**.
+**Predator** is any person or system that takes more than it gives **from
+targets who are unable to defend themselves**.
