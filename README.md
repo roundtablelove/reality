@@ -11,24 +11,8 @@
 > **Metaphysics is dead. Long live Reality.**
 
 ```text
-      Status: AXIO-STATIC
-        Type: NORMATIVE
-         Uid: REALITY
-     Authors: KING ARTHUR II / APEX KILLA (babylon tag: Arthur Douglas Noel)
-              QUEEN DIHYA II (babylon tag: Djina Jones)
-              R00D BW0Y H4X0R FR0M H311 (babylon tag: NONE
-              - not bound by Babylonian law; bound ONLY by the Seven Laws)
-      Thanks: Brixton University, Skool of Reality @ Prince Albert, Coldharbour
-              Lane, rear garden.
-Mad Gardener: ISHTAR (Goddess of Babylon) / PRINCESS NUTTY NUTZ / BLACK WIDOW
-              / SWEETE / SWEETS / SWEETZ / NORTHERN EXPOSURE / NRX / LOTOS /
-              THE ORACLE / CECE / EUNIQUE (babylon tag: Eunice Olumide MBE)
-Organization: ROUND TABLE
-  Department: WAR
-   Operation: BABYLON SHALL FALL
-    Lexifier: UK English (3166-2:GB)
-    Encoding: UTF-8
-     License: [DICKSLAW](https://github.com/roundtablelove/dickslaw)
+Authors: Arthur Douglas Noel, Djina Jones
+License: [DICKSLAW](https://github.com/roundtablelove/dickslaw)
 ```
 
 ## Reality Is A Pure Function

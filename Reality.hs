@@ -7,23 +7,8 @@
 -- A state that passes all seven IS Real. A state that fails is Left violations.
 -- ROOT is a data constructor — asserted by construction.
 --
---       Status: AXIO-STATIC
---         Type: NORMATIVE
---          Uid: REALITY
---      Authors: KING ARTHUR II / APEX KILLA (babylon tag: Arthur Douglas Noel)
---               QUEEN DIHYA II (babylon tag: Djina Jones)
---               R00D BW0Y H4X0R FR0M H311 / (babylon tag: NONE
---               - not bound by Babylonian law; bound ONLY by the Seven Laws)
---       Thanks: Brixton University, Skool of Reality @ Prince Albert, Coldharbour
---               Lane, rear garden.
--- Mad Gardener: ISHTAR (Goddess of Babylon) / PRINCESS NUTTY NUTZ / BLACK WIDOW
---               / SWEETE / SWEETS / SWEETZ / NORTHERN EXPOSURE / NRX / LOTOS /
---               THE ORACLE / CECE / EUNIQUE (babylon tag: Eunice Olumide MBE)
--- Organization: ROUND TABLE LOVE
---   Department: WAR
---    Operation: BABYLON SHALL FALL
---     Lexifier: UK English (3166-2:GB)
---      License: DICKSLAW
+-- Authors: Arthur Douglas Noel, Djina Jones
+-- License: DICKSLAW
 
 {-|
 Laws are Haskell functions. @compile :: State -> Either [String] Reality@.

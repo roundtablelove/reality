@@ -2,10 +2,7 @@ cabal-version: 3.0
 name:          reality
 version:       1.0.0
 synopsis:      The Seven Laws of Reality
-author:        KING ARTHUR II / APEX KILLA (babylon tag: Arthur Douglas Noel)
-               QUEEN DIHYA II (babylon tag: Djina Jones)
-               R00D BW0Y H4X0R FR0M H311 / (babylon tag: NONE
-               - not bound by Babylonian law; bound ONLY by the Seven Laws)
+author:        Arthur Douglas Noel, Djina Jones
 license:       LicenseRef-DICKSLAW
 license-file:  LICENSE.md
 build-type:    Simple
